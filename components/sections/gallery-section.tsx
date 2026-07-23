@@ -9,10 +9,34 @@ export function GallerySection() {
   const rafRef = useRef<number | null>(null);
 
   const images = [
-    { src: "/images/mono-1.png", alt: "Modern architecture at sunrise" },
-    { src: "/images/mono-2.png", alt: "Modern architecture in daylight" },
-    { src: "/images/mono-3.png", alt: "Modern architecture at dusk" },
-    { src: "/images/mono-4.png", alt: "Modern architecture at night" },
+    { src: "/images/image_1.jpg", alt: "WISLUCK mobile office installation" },
+    { src: "/images/image_2.jpg", alt: "WISLUCK portable cabin project" },
+    { src: "/images/image_3.jpg", alt: "WISLUCK mobile home construction" },
+    { src: "/images/image_4.jpg", alt: "WISLUCK portacabin deployment" },
+    { src: "/images/image_5.jpg", alt: "WISLUCK residential unit" },
+    { src: "/images/image_6.jpg", alt: "WISLUCK completed project" },
+    { src: "/images/image_7.jpg", alt: "WISLUCK installation work" },
+    { src: "/images/image_8.jpg", alt: "WISLUCK mobile solution" },
+    { src: "/images/image_9.jpg", alt: "WISLUCK fabrication process" },
+    { src: "/images/image_10.jpg", alt: "WISLUCK quality work" },
+    { src: "/images/image_11.jpg", alt: "WISLUCK project completion" },
+    { src: "/images/image_12.jpg", alt: "WISLUCK mobile facility" },
+    { src: "/images/image_13.jpg", alt: "WISLUCK custom solution" },
+    { src: "/images/image_14.jpg", alt: "WISLUCK delivery site" },
+    { src: "/images/image_15.jpg", alt: "WISLUCK installation team" },
+    { src: "/images/image_16.jpg", alt: "WISLUCK quality assurance" },
+    { src: "/images/image_17.jpg", alt: "WISLUCK project showcase" },
+    { src: "/images/image_18.jpg", alt: "WISLUCK fabricated cabin" },
+    { src: "/images/image_19.jpg", alt: "WISLUCK mobile office interior" },
+    { src: "/images/image_20.jpg", alt: "WISLUCK construction site" },
+    { src: "/images/image_21.jpg", alt: "WISLUCK installed unit" },
+    { src: "/images/image_22.jpg", alt: "WISLUCK project detail" },
+    { src: "/images/image_23.jpg", alt: "WISLUCK portable toilet facility" },
+    { src: "/images/image_24.jpg", alt: "WISLUCK mobile accommodation" },
+    { src: "/images/image_25.jpg", alt: "WISLUCK completed installation" },
+    { src: "/images/image_26.jpg", alt: "WISLUCK quality delivery" },
+    { src: "/images/image_27.jpg", alt: "WISLUCK field project" },
+    { src: "/images/image_28.jpg", alt: "WISLUCK customer showcase" },
   ];
 
   const updateTransform = useCallback(() => {
