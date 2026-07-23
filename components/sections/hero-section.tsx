@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const word = "MONO";
+const word = "WISLUCK";
 
 const sideImages = [
   {
@@ -130,7 +130,7 @@ export function HeroSection() {
                 className="absolute inset-0 z-0 flex items-center justify-center"
                 style={{ opacity: textOpacity, transform: 'translateY(-200px)' }}
               >
-                <h1 className="whitespace-nowrap text-[35vw] font-bold leading-[0.8] tracking-tighter text-black">
+                <h1 className="whitespace-nowrap text-[28vw] font-bold leading-[0.8] tracking-tighter text-black">
                   {word.split("").map((letter, index) => (
                     <span
                       key={index}
@@ -195,9 +195,9 @@ export function HeroSection() {
         style={{ opacity: textOpacity }}
       >
         <p className="mx-auto max-w-2xl text-center text-2xl leading-relaxed text-white md:text-3xl lg:text-[2.5rem] lg:leading-snug">
-          Lightweight, durable
+          Portable Solutions
           <br />
-          and adventure-ready.
+          for modern living.
         </p>
       </div>
 

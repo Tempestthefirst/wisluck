@@ -78,9 +78,9 @@ const sideImages = [
 ];
 
 const textCycles = [
-  "Design & Sustainability.",
-  "Passive Energy.",
-  "Bio-sourced Construction.",
+  "Modular & Customizable.",
+  "Weather Resistant.",
+  "Quick Installation.",
 ];
 
 export function TechnologySection() {
@@ -89,7 +89,7 @@ export function TechnologySection() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [textProgress, setTextProgress] = useState(0);
   
-  const descriptionText = "Passive architecture reimagining modern living. Triple glazing, reinforced insulation and natural ventilation combine with solar panels to create an energy-autonomous home. Bio-sourced materials like solid wood and hemp wool ensure healthy indoor air and minimal ecological footprint.";
+  const descriptionText = "WISLUCK portacabins feature advanced modular construction for infinite customization. Each unit is engineered with reinforced steel frames and premium weatherproofing to endure extreme conditions. Our rapid deployment system ensures installation completion within days, not weeks. Energy-efficient designs with thermal insulation reduce operational costs while maintaining premium comfort standards.";
 
   useEffect(() => {
     const handleScroll = () => {

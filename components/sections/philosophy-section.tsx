@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useEffect, useRef, useState, useCallback } from "react";
 
 const titles = [
-  "Sustainable Architecture.",
-  "Built for Tomorrow.",
-  "Eco-Responsible.",
+  "Modular Excellence.",
+  "Durable Solutions.",
+  "Built to Last.",
 ];
 
 export function PhilosophySection() {
@@ -145,7 +145,7 @@ export function PhilosophySection() {
         <div className="text-center">
           
           <p className="mt-8 leading-relaxed text-muted-foreground text-3xl text-center">
-            {("A design home that combines contemporary aesthetics and energy performance. Built with eco-friendly materials, it minimizes carbon footprint while offering optimal comfort.").split(" ").map((word, index, array) => {
+            {("WISLUCK delivers customizable mobile accommodations engineered for durability, rapid deployment, and adaptability. Our portacabins withstand harsh conditions while providing comfortable living and working spaces worldwide.").split(" ").map((word, index, array) => {
               const wordProgress = Math.max(0, Math.min(1, (descriptionProgress * array.length) - index));
               const opacity = wordProgress;
               const blur = (1 - wordProgress) * 40;

@@ -26,8 +26,8 @@ export function Header() {
     >
       <div className="flex items-center justify-between transition-all duration-300 px-2 pl-5 py-2">
         {/* Logo */}
-        <Link href="#hero" className="text-lg font-medium tracking-tight transition-colors duration-300 text-foreground">
-          MONO
+        <Link href="#hero" className="text-base font-medium tracking-tight transition-colors duration-300 text-foreground">
+          WISLUCK
         </Link>
 
         {/* Desktop Navigation */}
@@ -36,7 +36,7 @@ export function Header() {
             href="#technology"
             className="text-sm transition-colors text-muted-foreground hover:text-foreground"
           >
-            Design
+            Services
           </Link>
           <Link
             href="#gallery"
@@ -45,16 +45,16 @@ export function Header() {
             Gallery
           </Link>
           <Link
-            href="#accessories"
+            href="#products"
             className="text-sm transition-colors text-muted-foreground hover:text-foreground"
           >
-            Models
+            Products
           </Link>
           <Link
-            href="#about"
+            href="#contact"
             className="text-sm transition-colors text-muted-foreground hover:text-foreground"
           >
-            About
+            Contact
           </Link>
         </nav>
 
@@ -88,7 +88,7 @@ export function Header() {
               className="text-lg text-foreground"
               onClick={() => setIsMenuOpen(false)}
             >
-              Design
+              Services
             </Link>
             <Link
               href="#gallery"
@@ -98,21 +98,21 @@ export function Header() {
               Gallery
             </Link>
             <Link
-              href="#accessories"
+              href="#products"
               className="text-lg text-foreground"
               onClick={() => setIsMenuOpen(false)}
             >
-              Models
+              Products
             </Link>
             <Link
-              href="#about"
+              href="#contact"
               className="text-lg text-foreground"
               onClick={() => setIsMenuOpen(false)}
             >
-              About
+              Contact
             </Link>
             <Link
-              href="#reserve"
+              href="#contact"
               className="mt-4 bg-foreground px-5 py-3 text-center text-sm font-medium text-background rounded-full"
               onClick={() => setIsMenuOpen(false)}
             >

@@ -4,22 +4,22 @@ import Link from "next/link";
 
 const footerLinks = {
   explore: [
-    { label: "Products", href: "#products" },
-    { label: "Technology", href: "#technology" },
+    { label: "Mobile Offices", href: "#products" },
+    { label: "Mobile Homes", href: "#products" },
+    { label: "Mobile Toilets", href: "#products" },
     { label: "Gallery", href: "#gallery" },
-    { label: "Accessories", href: "#accessories" },
   ],
   about: [
-    { label: "Our Story", href: "#" },
+    { label: "About WISLUCK", href: "#" },
+    { label: "Our Services", href: "#" },
+    { label: "Projects", href: "#" },
     { label: "Team", href: "#" },
-    { label: "Careers", href: "#" },
-    { label: "Contact", href: "#" },
   ],
   service: [
-    { label: "FAQ", href: "#" },
-    { label: "Shipping", href: "#" },
-    { label: "Returns", href: "#" },
-    { label: "Warranty", href: "#" },
+    { label: "Custom Solutions", href: "#" },
+    { label: "Installation", href: "#" },
+    { label: "Support", href: "#" },
+    { label: "Contact Us", href: "#" },
   ],
 };
 
@@ -32,11 +32,18 @@ export function FooterSection() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1 lg:col-span-2">
             <Link href="#hero" className="text-lg font-medium text-foreground">
-              MONO
+              WISLUCK
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              Sustainable design homes combining contemporary aesthetics with energy efficiency and eco-friendly materials.
+              Premium mobile accommodations engineered for durability and rapid deployment. Portacabins, mobile homes, and modular solutions worldwide.
             </p>
+            <div className="mt-4 text-xs space-y-1 text-muted-foreground">
+              <p><strong className="text-foreground">Email:</strong> wisluckgis2025@gmail.com</p>
+              <p><strong className="text-foreground">Phone:</strong> 09012135995 | 08033388032</p>
+              <p className="mt-2"><strong className="text-foreground">Address:</strong></p>
+              <p>No.6 City Ward Church Close, off Odani Road, Elelenwo Port Harcourt Rivers state.</p>
+              <p><strong className="text-foreground">MD:</strong> Engr. Sunny Ajuzie</p>
+            </div>
           </div>
 
           {/* Explore */}
@@ -96,7 +103,7 @@ export function FooterSection() {
       <div className="border-t border-border px-6 py-6 md:px-12 lg:px-20">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-xs text-muted-foreground">
-            2026 MONO. All rights reserved.
+            2026 WISLUCK GLOBAL INDUSTRIAL SERVICES LTD. All rights reserved.
           </p>
 
           

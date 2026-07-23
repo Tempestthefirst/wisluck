@@ -5,23 +5,23 @@ import { FadeImage } from "@/components/fade-image";
 const accessories = [
   {
     id: 1,
-    name: "Compact Model",
-    description: "120m² living space with optimal energy efficiency",
-    price: "$285,000",
+    name: "Mobile Offices",
+    description: "Fully equipped portable office spaces for remote work and field operations",
+    price: "From ₦2.5M",
     image: "/images/hero-side-1.png",
   },
   {
     id: 2,
-    name: "Standard Model",
-    description: "180m² perfect balance of space and sustainability",
-    price: "$395,000",
+    name: "Mobile Homes",
+    description: "Comfortable residential cabins with full amenities and customizable layouts",
+    price: "From ₦3.8M",
     image: "/images/hero-side-2.png",
   },
   {
     id: 3,
-    name: "Premium Model",
-    description: "250m² expansive design with maximum comfort",
-    price: "$525,000",
+    name: "Mobile Toilets",
+    description: "Sanitation solutions for construction sites, events, and remote locations",
+    price: "From ₦850K",
     image: "/images/hero-side-4.png",
   },
 ];
@@ -32,7 +32,7 @@ export function CollectionSection() {
       {/* Section Title */}
       <div className="px-6 py-20 md:px-12 lg:px-20 md:py-10">
         <h2 className="text-3xl font-medium tracking-tight text-foreground md:text-4xl">
-          Surface Options
+          Our Products
         </h2>
       </div>
 

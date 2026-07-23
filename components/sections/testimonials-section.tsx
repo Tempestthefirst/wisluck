@@ -19,8 +19,7 @@ export function TestimonialsSection() {
         {/* Text Overlay */}
         <div className="absolute inset-0 flex items-end justify-center px-6 pb-16 md:px-12 md:pb-24 lg:px-20 lg:pb-32">
           <p className="mx-auto max-w-5xl text-2xl leading-relaxed text-white md:text-3xl lg:text-[2.5rem] lg:leading-snug text-center">
-            A passive house that combines contemporary design with environmental respect — 
-            built for those who refuse to choose between modern comfort and ecological responsibility.
+            Trusted by construction companies and enterprises across Africa — WISLUCK delivers robust, affordable mobile accommodations for every challenge.
           </p>
         </div>
       </div>
