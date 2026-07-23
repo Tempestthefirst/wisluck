@@ -7,8 +7,8 @@ import './globals.css'
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: 'EVASION',
-  description: 'High-performance outdoor gear engineered for the modern explorer. Lightweight, durable, adventure-ready.',
+  title: 'WISLUCK Global Industrial Services - Portable Cabins & Mobile Accommodations',
+  description: 'Premium portable cabins, mobile offices, and mobile homes. Custom fabrication and rapid deployment of modular solutions.',
   generator: 'v0.app',
   icons: {
     icon: [

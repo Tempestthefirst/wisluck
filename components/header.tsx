@@ -26,32 +26,32 @@ export function Header() {
     >
       <div className="flex items-center justify-between transition-all duration-300 px-2 pl-5 py-2">
         {/* Logo */}
-        <Link href="#hero" className="text-base font-medium tracking-tight transition-colors duration-300 text-foreground">
+        <Link href="/" className="text-base font-medium tracking-tight transition-colors duration-300 text-foreground">
           WISLUCK
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-10 md:flex">
           <Link
-            href="#technology"
+            href="/services"
             className="text-sm transition-colors text-muted-foreground hover:text-foreground"
           >
             Services
           </Link>
           <Link
-            href="#gallery"
+            href="/gallery"
             className="text-sm transition-colors text-muted-foreground hover:text-foreground"
           >
             Gallery
           </Link>
           <Link
-            href="#products"
+            href="/"
             className="text-sm transition-colors text-muted-foreground hover:text-foreground"
           >
-            Products
+            Home
           </Link>
           <Link
-            href="#contact"
+            href="/contact"
             className="text-sm transition-colors text-muted-foreground hover:text-foreground"
           >
             Contact
@@ -61,7 +61,7 @@ export function Header() {
         {/* CTA */}
         <div className="hidden items-center gap-6 md:flex">
           <Link
-            href="#reserve"
+            href="/contact"
             className="px-4 py-2 text-sm font-medium transition-all rounded-full bg-foreground text-background hover:opacity-80"
           >
             Contact
@@ -84,39 +84,39 @@ export function Header() {
         <div className="border-t border-border bg-background px-6 py-8 md:hidden rounded-b-2xl">
           <nav className="flex flex-col gap-6">
             <Link
-              href="#technology"
+              href="/services"
               className="text-lg text-foreground"
               onClick={() => setIsMenuOpen(false)}
             >
               Services
             </Link>
             <Link
-              href="#gallery"
+              href="/gallery"
               className="text-lg text-foreground"
               onClick={() => setIsMenuOpen(false)}
             >
               Gallery
             </Link>
             <Link
-              href="#products"
+              href="/"
               className="text-lg text-foreground"
               onClick={() => setIsMenuOpen(false)}
             >
-              Products
+              Home
             </Link>
             <Link
-              href="#contact"
+              href="/contact"
               className="text-lg text-foreground"
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
             </Link>
             <Link
-              href="#contact"
+              href="/contact"
               className="mt-4 bg-foreground px-5 py-3 text-center text-sm font-medium text-background rounded-full"
               onClick={() => setIsMenuOpen(false)}
             >
-              Contact
+              Get in Touch
             </Link>
           </nav>
         </div>
