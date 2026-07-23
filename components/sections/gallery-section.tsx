@@ -9,34 +9,43 @@ export function GallerySection() {
   const rafRef = useRef<number | null>(null);
 
   const images = [
-    { src: "/images/image_1.jpg", alt: "WISLUCK mobile office installation" },
-    { src: "/images/image_2.jpg", alt: "WISLUCK portable cabin project" },
-    { src: "/images/image_3.jpg", alt: "WISLUCK mobile home construction" },
-    { src: "/images/image_4.jpg", alt: "WISLUCK portacabin deployment" },
-    { src: "/images/image_5.jpg", alt: "WISLUCK residential unit" },
-    { src: "/images/image_6.jpg", alt: "WISLUCK completed project" },
-    { src: "/images/image_7.jpg", alt: "WISLUCK installation work" },
-    { src: "/images/image_8.jpg", alt: "WISLUCK mobile solution" },
-    { src: "/images/image_9.jpg", alt: "WISLUCK fabrication process" },
-    { src: "/images/image_10.jpg", alt: "WISLUCK quality work" },
-    { src: "/images/image_11.jpg", alt: "WISLUCK project completion" },
-    { src: "/images/image_12.jpg", alt: "WISLUCK mobile facility" },
-    { src: "/images/image_13.jpg", alt: "WISLUCK custom solution" },
-    { src: "/images/image_14.jpg", alt: "WISLUCK delivery site" },
-    { src: "/images/image_15.jpg", alt: "WISLUCK installation team" },
-    { src: "/images/image_16.jpg", alt: "WISLUCK quality assurance" },
-    { src: "/images/image_17.jpg", alt: "WISLUCK project showcase" },
-    { src: "/images/image_18.jpg", alt: "WISLUCK fabricated cabin" },
-    { src: "/images/image_19.jpg", alt: "WISLUCK mobile office interior" },
-    { src: "/images/image_20.jpg", alt: "WISLUCK construction site" },
-    { src: "/images/image_21.jpg", alt: "WISLUCK installed unit" },
-    { src: "/images/image_22.jpg", alt: "WISLUCK project detail" },
-    { src: "/images/image_23.jpg", alt: "WISLUCK portable toilet facility" },
-    { src: "/images/image_24.jpg", alt: "WISLUCK mobile accommodation" },
-    { src: "/images/image_25.jpg", alt: "WISLUCK completed installation" },
-    { src: "/images/image_26.jpg", alt: "WISLUCK quality delivery" },
-    { src: "/images/image_27.jpg", alt: "WISLUCK field project" },
-    { src: "/images/image_28.jpg", alt: "WISLUCK customer showcase" },
+    // Fabrication & Engineering Standards - Proof of custom craftsmanship & safety
+    { src: "/images/image_27.jpg", alt: "High-detail welding arc shot - Proof of custom craftsmanship", category: "Fabrication & Engineering" },
+    { src: "/images/image_26.jpg", alt: "Crew in full PPE mounting structural steel roof beams - Proof of safety & field execution", category: "Fabrication & Engineering" },
+    { src: "/images/image_21.jpg", alt: "Heavy-duty steel doors and rugged metal shell - Proof of industrial durability", category: "Fabrication & Engineering" },
+    { src: "/images/image_9.jpg", alt: "Structural welding and fabrication - Engineering precision", category: "Fabrication & Engineering" },
+    { src: "/images/image_10.jpg", alt: "Metal assembly and component fabrication", category: "Fabrication & Engineering" },
+    { src: "/images/image_11.jpg", alt: "Structural components assembly and quality control", category: "Fabrication & Engineering" },
+    
+    // Exterior Designs & Site Deployment - Proof of scalability & finish quality
+    { src: "/images/image_19.jpg", alt: "Multi-unit site layout on concrete block piers - Proof of scalability", category: "Exterior Designs" },
+    { src: "/images/image_22.jpg", alt: "Sleek, fully completed white sandwich-panel module - Proof of clean exterior finish", category: "Exterior Designs" },
+    { src: "/images/image_17.jpg", alt: "Low-angle exterior highlighting drainage, AC piping, and level foundation - Proof of civil engineering detail", category: "Exterior Designs" },
+    { src: "/images/image_3.jpg", alt: "Completed portacabin unit with professional exterior finish", category: "Exterior Designs" },
+    { src: "/images/image_4.jpg", alt: "Exterior deployment on reinforced foundation system", category: "Exterior Designs" },
+    { src: "/images/image_23.jpg", alt: "Completed mobile unit with clean panel integration", category: "Exterior Designs" },
+    
+    // Interior Comfort & Accommodation - Warmth and residential feel
+    { src: "/images/image_16.jpg", alt: "Full-room double-occupancy layout with zebra blinds - Warmth and residential feel", category: "Interior Comfort" },
+    { src: "/images/image_20.jpg", alt: "Modern executive suite layout with AC and en-suite access - High-end comfort", category: "Interior Comfort" },
+    { src: "/images/image_15.jpg", alt: "High-focus shot on wood-grain wardrobes and bunk beds - Space optimization", category: "Interior Comfort" },
+    { src: "/images/image_18.jpg", alt: "Key-locked storage units - Occupant security and organization", category: "Interior Comfort" },
+    { src: "/images/image_2.jpg", alt: "Interior furnishing and accommodation design", category: "Interior Comfort" },
+    { src: "/images/image_5.jpg", alt: "Residential accommodation with modern amenities", category: "Interior Comfort" },
+    
+    // Technical Specs & Utilities - Electrical readiness & structural integrity
+    { src: "/images/image_28.jpg", alt: "Clean insulated wall panels and routed surface wiring pathways - Turnkey electrical readiness", category: "Technical Specs" },
+    { src: "/images/image_24.jpg", alt: "Bare steel box skeleton framework - Structural integrity proof", category: "Technical Specs" },
+    { src: "/images/image_25.jpg", alt: "Steel framework structure and support system integrity", category: "Technical Specs" },
+    { src: "/images/image_6.jpg", alt: "Infrastructure and mechanical systems installation", category: "Technical Specs" },
+    { src: "/images/image_7.jpg", alt: "Technical utility components and electrical systems", category: "Technical Specs" },
+    { src: "/images/image_8.jpg", alt: "Utility installations and system integration", category: "Technical Specs" },
+    
+    // General Portfolio - Showcase projects
+    { src: "/images/image_1.jpg", alt: "WISLUCK completed portable cabin project - Client showcase", category: "Portfolio" },
+    { src: "/images/image_12.jpg", alt: "WISLUCK mobile facility deployment", category: "Portfolio" },
+    { src: "/images/image_13.jpg", alt: "WISLUCK custom accommodation solution", category: "Portfolio" },
+    { src: "/images/image_14.jpg", alt: "WISLUCK site delivery and positioning", category: "Portfolio" },
   ];
 
   const updateTransform = useCallback(() => {
