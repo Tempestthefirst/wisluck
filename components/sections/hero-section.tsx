@@ -148,8 +148,8 @@ export function HeroSection() {
               </div>
               
               <Image
-                src="/images/image_17.jpg"
-                alt="WISLUCK portacabin with low-angle exterior showing drainage and AC piping"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Wisluck%20landing.jpg-aRzPnUfVeDnjb8nWghQnZ5r2Z5i5vR.png"
+                alt="WISLUCK portacabin construction site - real project showcase"
                 fill
                 className="absolute inset-0 z-10 object-cover"
                 priority

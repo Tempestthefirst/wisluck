@@ -140,30 +140,61 @@ export function PhilosophySection() {
         </div>
       </div>
 
-      {/* Description */}
+      {/* Description - Feature Cards */}
       <div ref={descriptionRef} className="px-6 pt-8 pb-20 md:px-12 md:pt-12 md:pb-28 lg:px-20 lg:pt-16 lg:pb-36">
-        <div className="text-center">
-          
-          <p className="mt-8 leading-relaxed text-muted-foreground text-3xl text-center">
-            {("WISLUCK delivers customizable mobile accommodations engineered for durability, rapid deployment, and adaptability. Our portacabins withstand harsh conditions while providing comfortable living and working spaces worldwide.").split(" ").map((word, index, array) => {
-              const wordProgress = Math.max(0, Math.min(1, (descriptionProgress * array.length) - index));
-              const opacity = wordProgress;
-              const blur = (1 - wordProgress) * 40;
-              
-              return (
-                <span
-                  key={index}
-                  style={{
-                    opacity,
-                    filter: `blur(${blur}px)`,
-                    transition: 'opacity 0.3s ease, filter 0.3s ease',
-                  }}
-                >
-                  {word}{index < array.length - 1 ? " " : ""}
-                </span>
-              );
-            })}
+        <div className="mx-auto max-w-6xl">
+          {/* Intro Text */}
+          <p className="text-center text-sm md:text-base text-muted-foreground mb-12 leading-relaxed">
+            WISLUCK delivers engineered solutions that stand the test of time and terrain.
           </p>
+          
+          {/* Feature Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4">
+            {/* Card 1 */}
+            <div 
+              className="p-6 rounded-lg border border-border bg-background/50 backdrop-blur-sm hover:border-foreground/30 transition-all duration-300"
+              style={{
+                opacity: Math.max(0, Math.min(1, descriptionProgress - 0)),
+                transform: `translateY(${Math.max(0, (1 - descriptionProgress) * 20)}px)`,
+                transition: 'opacity 0.5s ease, transform 0.5s ease',
+              }}
+            >
+              <div className="text-2xl font-bold text-foreground mb-2">Modular Design</div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Infinite customization options tailored to your exact specifications and site requirements.
+              </p>
+            </div>
+            
+            {/* Card 2 */}
+            <div 
+              className="p-6 rounded-lg border border-border bg-background/50 backdrop-blur-sm hover:border-foreground/30 transition-all duration-300"
+              style={{
+                opacity: Math.max(0, Math.min(1, descriptionProgress - 0.15)),
+                transform: `translateY(${Math.max(0, (1 - Math.max(0, descriptionProgress - 0.15)) * 20)}px)`,
+                transition: 'opacity 0.5s ease, transform 0.5s ease',
+              }}
+            >
+              <div className="text-2xl font-bold text-foreground mb-2">Durability First</div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Reinforced steel frames and premium weatherproofing engineered to endure extreme conditions.
+              </p>
+            </div>
+            
+            {/* Card 3 */}
+            <div 
+              className="p-6 rounded-lg border border-border bg-background/50 backdrop-blur-sm hover:border-foreground/30 transition-all duration-300"
+              style={{
+                opacity: Math.max(0, Math.min(1, descriptionProgress - 0.3)),
+                transform: `translateY(${Math.max(0, (1 - Math.max(0, descriptionProgress - 0.3)) * 20)}px)`,
+                transition: 'opacity 0.5s ease, transform 0.5s ease',
+              }}
+            >
+              <div className="text-2xl font-bold text-foreground mb-2">Rapid Deployment</div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Installation completed in days, not weeks. Ready-to-use mobile solutions worldwide.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
