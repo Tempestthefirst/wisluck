@@ -7,26 +7,26 @@ const word = "WISLUCK";
 
 const sideImages = [
   {
-    src: "/images/hero-side-1.png",
-    alt: "Modern architecture with corten steel",
+    src: "/images/image_22.jpg",
+    alt: "WISLUCK mobile home - sleek white finish exterior",
     position: "left",
     span: 1,
   },
   {
-    src: "/images/hero-side-2.png",
-    alt: "Aerial view of modern home",
+    src: "/images/image_3.jpg",
+    alt: "WISLUCK completed portacabin unit with professional design",
     position: "left",
     span: 1,
   },
   {
-    src: "/images/hero-side-3.png",
-    alt: "Interior view with landscape",
+    src: "/images/image_19.jpg",
+    alt: "WISLUCK multi-unit site layout on concrete block piers",
     position: "right",
     span: 1,
   },
   {
-    src: "/images/hero-side-4.png",
-    alt: "Modern architecture at night",
+    src: "/images/image_4.jpg",
+    alt: "WISLUCK exterior deployment and field positioning",
     position: "right",
     span: 1,
   },
@@ -148,8 +148,8 @@ export function HeroSection() {
               </div>
               
               <Image
-                src="/images/hero-mono.png"
-                alt="Modern architectural structure with reflection"
+                src="/images/image_17.jpg"
+                alt="WISLUCK portacabin with low-angle exterior showing drainage and AC piping"
                 fill
                 className="absolute inset-0 z-10 object-cover"
                 priority

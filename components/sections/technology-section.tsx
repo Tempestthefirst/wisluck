@@ -66,13 +66,13 @@ function ScrollRevealText({ text }: { text: string }) {
 
 const sideImages = [
   {
-    src: "/images/interior-view.png",
-    alt: "Interior view with landscape",
+    src: "/images/image_28.jpg",
+    alt: "WISLUCK insulated wall panels and routed surface wiring - electrical readiness",
     position: "left",
   },
   {
-    src: "/images/rusted-metal.png",
-    alt: "Rusted metal texture",
+    src: "/images/image_24.jpg",
+    alt: "WISLUCK bare steel box skeleton framework - structural integrity proof",
     position: "right",
   },
 ];
@@ -186,10 +186,10 @@ export function TechnologySection() {
               }}
             >
               {/* Layered Images - Progressive Fade In */}
-              {/* Image 1 - Base layer - Sunrise/Sunset with sun rays */}
+              {/* Image 1 - Base layer - Exterior deployment showcase */}
               <Image
-                src="/images/mono-1.png"
-                alt="Modern architecture at sunrise"
+                src="/images/image_17.jpg"
+                alt="WISLUCK exterior deployment with civil engineering details"
                 fill
                 className="object-cover"
                 style={{
@@ -197,10 +197,10 @@ export function TechnologySection() {
                 }}
               />
               
-              {/* Image 2 - Daytime scene - Fades in during first text cycle */}
+              {/* Image 2 - Interior comfort - Fades in during first text cycle */}
               <Image
-                src="/images/mono-2.png"
-                alt="Modern architecture in daylight"
+                src="/images/image_16.jpg"
+                alt="WISLUCK full-room double-occupancy interior layout"
                 fill
                 className="absolute inset-0 object-cover"
                 style={{
@@ -209,10 +209,10 @@ export function TechnologySection() {
                 }}
               />
               
-              {/* Image 3 - Dusk/Evening - Fades in during second text cycle */}
+              {/* Image 3 - Fabrication work - Fades in during second text cycle */}
               <Image
-                src="/images/mono-3.png"
-                alt="Modern architecture at dusk"
+                src="/images/image_26.jpg"
+                alt="WISLUCK crew in full PPE mounting structural steel - safety proof"
                 fill
                 className="absolute inset-0 object-cover"
                 style={{
@@ -221,10 +221,10 @@ export function TechnologySection() {
                 }}
               />
               
-              {/* Image 4 - Night with stars - Fades in during third text cycle */}
+              {/* Image 4 - Completed project - Fades in during third text cycle */}
               <Image
-                src="/images/mono-4.png"
-                alt="Modern architecture at night"
+                src="/images/image_22.jpg"
+                alt="WISLUCK sleek fully completed white sandwich-panel module"
                 fill
                 className="absolute inset-0 object-cover"
                 style={{
