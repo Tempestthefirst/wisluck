@@ -8,8 +8,8 @@ export function TestimonialsSection() {
       {/* About Image with Text Overlay */}
       <div className="relative aspect-[16/9] w-full">
         <Image
-          src="/images/testimonial-house.png"
-          alt="Modern corten steel architecture in natural landscape"
+          src="/images/image_19.jpg"
+          alt="Multi-unit WISLUCK site deployment showing scale and reach"
           fill
           className="object-cover"
         />

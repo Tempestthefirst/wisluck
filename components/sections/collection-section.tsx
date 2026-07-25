@@ -8,21 +8,21 @@ const accessories = [
     name: "Mobile Offices",
     description: "Fully equipped portable office spaces for remote work and field operations",
     price: "From ₦2.5M",
-    image: "/images/hero-side-1.png",
+    image: "/images/image_20.jpg",
   },
   {
     id: 2,
     name: "Mobile Homes",
     description: "Comfortable residential cabins with full amenities and customizable layouts",
     price: "From ₦3.8M",
-    image: "/images/hero-side-2.png",
+    image: "/images/image_16.jpg",
   },
   {
     id: 3,
     name: "Mobile Toilets",
     description: "Sanitation solutions for construction sites, events, and remote locations",
     price: "From ₦850K",
-    image: "/images/hero-side-4.png",
+    image: "/images/image_23.jpg",
   },
 ];
 

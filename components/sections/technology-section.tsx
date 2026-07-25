@@ -66,13 +66,13 @@ function ScrollRevealText({ text }: { text: string }) {
 
 const sideImages = [
   {
-    src: "/images/interior-view.png",
-    alt: "Interior view with landscape",
+    src: "/images/image_20.jpg",
+    alt: "Modern executive suite interior with AC and en-suite access",
     position: "left",
   },
   {
-    src: "/images/rusted-metal.png",
-    alt: "Rusted metal texture",
+    src: "/images/image_27.jpg",
+    alt: "High-detail welding arc showing custom craftsmanship",
     position: "right",
   },
 ];
@@ -186,10 +186,10 @@ export function TechnologySection() {
               }}
             >
               {/* Layered Images - Progressive Fade In */}
-              {/* Image 1 - Base layer - Sunrise/Sunset with sun rays */}
+              {/* Image 1 - Base layer - bare steel skeleton, the starting point of every build */}
               <Image
-                src="/images/mono-1.png"
-                alt="Modern architecture at sunrise"
+                src="/images/image_24.jpg"
+                alt="Bare steel box skeleton framework"
                 fill
                 className="object-cover"
                 style={{
@@ -197,10 +197,10 @@ export function TechnologySection() {
                 }}
               />
               
-              {/* Image 2 - Daytime scene - Fades in during first text cycle */}
+              {/* Image 2 - Modular & Customizable - Fades in during first text cycle */}
               <Image
-                src="/images/mono-2.png"
-                alt="Modern architecture in daylight"
+                src="/images/image_19.jpg"
+                alt="Multi-unit site layout showing modular, scalable deployment"
                 fill
                 className="absolute inset-0 object-cover"
                 style={{
@@ -209,10 +209,10 @@ export function TechnologySection() {
                 }}
               />
               
-              {/* Image 3 - Dusk/Evening - Fades in during second text cycle */}
+              {/* Image 3 - Weather Resistant - Fades in during second text cycle */}
               <Image
-                src="/images/mono-3.png"
-                alt="Modern architecture at dusk"
+                src="/images/image_21.jpg"
+                alt="Heavy-duty steel doors and rugged metal shell"
                 fill
                 className="absolute inset-0 object-cover"
                 style={{
@@ -221,10 +221,10 @@ export function TechnologySection() {
                 }}
               />
               
-              {/* Image 4 - Night with stars - Fades in during third text cycle */}
+              {/* Image 4 - Quick Installation - Fades in during third text cycle */}
               <Image
-                src="/images/mono-4.png"
-                alt="Modern architecture at night"
+                src="/images/image_26.jpg"
+                alt="Crew in full PPE mounting structural steel roof beams on site"
                 fill
                 className="absolute inset-0 object-cover"
                 style={{

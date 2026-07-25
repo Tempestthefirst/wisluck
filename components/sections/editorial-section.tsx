@@ -51,36 +51,38 @@ export function EditorialSection() {
   }, [updateParallax]);
 
   // Parallax effect: video moves up as you scroll down
-  const parallaxY = (scrollProgress - 0.5) * 30; // -15px to +15px range
+  const parallaxY = (scrollProgress - 0.5) * 20; // subtle drift range
 
   return (
     <section className="bg-background">
-      {/* Newsletter Banner */}
-      
-
-      {/* Decorative Icons */}
-      <div className="flex items-center justify-center gap-6 pb-20">
-        
-        
-      </div>
-
-      {/* Full-width Video with Parallax */}
-      <div ref={videoRef} className="relative aspect-[16/9] w-full md:aspect-[21/9] overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{
-            transform: `scale(1.15) translate3d(0, ${parallaxY}px, 0) translateZ(0)`,
-            WebkitTransform: `scale(1.15) translate3d(0, ${parallaxY}px, 0) translateZ(0)`,
-            backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden',
-            willChange: 'transform',
-          }}
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/27eb7fb4-0105-4010-ac9e-0ac977a31b05_1-FZ89nvBAAsR3caRJbhYv7T2mjBofth.mp4"
-        />
+      {/* On-Site Video - shown in its native portrait format rather than */}
+      {/* force-cropped into a wide banner, so none of the footage is lost */}
+      <div className="bg-foreground px-6 py-20 md:py-28">
+        <div className="mx-auto max-w-6xl">
+          <p className="mb-10 text-center text-xs uppercase tracking-widest text-background/60">
+            On Site With WISLUCK
+          </p>
+          <div
+            ref={videoRef}
+            className="relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-2xl shadow-2xl md:max-w-md"
+          >
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover"
+              style={{
+                transform: `scale(1.08) translate3d(0, ${parallaxY}px, 0) translateZ(0)`,
+                WebkitTransform: `scale(1.08) translate3d(0, ${parallaxY}px, 0) translateZ(0)`,
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+                willChange: 'transform',
+              }}
+              src="/videos/wisluck-onsite.mp4"
+            />
+          </div>
+        </div>
       </div>
 
       {/* Specs Grid */}

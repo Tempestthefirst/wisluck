@@ -7,26 +7,26 @@ const word = "WISLUCK";
 
 const sideImages = [
   {
-    src: "/images/hero-side-1.png",
-    alt: "Modern architecture with corten steel",
+    src: "/images/image_22.jpg",
+    alt: "Completed WISLUCK sandwich-panel cabin with clean exterior finish",
     position: "left",
     span: 1,
   },
   {
-    src: "/images/hero-side-2.png",
-    alt: "Aerial view of modern home",
+    src: "/images/image_19.jpg",
+    alt: "Multi-unit WISLUCK site layout showing scalable deployment",
     position: "left",
     span: 1,
   },
   {
-    src: "/images/hero-side-3.png",
-    alt: "Interior view with landscape",
+    src: "/images/image_26.jpg",
+    alt: "WISLUCK crew in full PPE mounting structural steel roof beams",
     position: "right",
     span: 1,
   },
   {
-    src: "/images/hero-side-4.png",
-    alt: "Modern architecture at night",
+    src: "/images/image_3.jpg",
+    alt: "Completed WISLUCK portacabin unit with professional exterior finish",
     position: "right",
     span: 1,
   },
@@ -130,7 +130,7 @@ export function HeroSection() {
                 className="absolute inset-0 z-0 flex items-center justify-center"
                 style={{ opacity: textOpacity, transform: 'translateY(-200px)' }}
               >
-                <h1 className="whitespace-nowrap text-[28vw] font-bold leading-[0.8] tracking-tighter text-black">
+                <h1 className="whitespace-nowrap text-[clamp(2.75rem,15vw,9rem)] font-bold leading-[0.8] tracking-tighter text-black">
                   {word.split("").map((letter, index) => (
                     <span
                       key={index}
@@ -148,8 +148,8 @@ export function HeroSection() {
               </div>
               
               <Image
-                src="/images/hero-mono.png"
-                alt="Modern architectural structure with reflection"
+                src="/images/Wisluck landing.jpg"
+                alt="WISLUCK steel-frame portacabin under construction on site"
                 fill
                 className="absolute inset-0 z-10 object-cover"
                 priority
