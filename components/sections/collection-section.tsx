@@ -5,22 +5,22 @@ import { FadeImage } from "@/components/fade-image";
 const accessories = [
   {
     id: 1,
-    name: "Mobile Offices",
-    description: "Fully equipped portable office spaces for remote work and field operations",
+    name: "Container Offices",
+    description: "Repurposed and custom-built container offices for site management and field operations",
     price: "From ₦2.5M",
     image: "/images/image_20.jpg",
   },
   {
     id: 2,
-    name: "Mobile Homes",
-    description: "Comfortable residential cabins with full amenities and customizable layouts",
+    name: "Portacabins & Modular Units",
+    description: "PUF & polystyrene sandwich panel cabins, made to any type or size, including house boat accommodation",
     price: "From ₦3.8M",
     image: "/images/image_16.jpg",
   },
   {
     id: 3,
     name: "Mobile Toilets",
-    description: "Sanitation solutions for construction sites, events, and remote locations",
+    description: "Self-contained sanitation units for construction sites, events, and remote locations",
     price: "From ₦850K",
     image: "/images/image_23.jpg",
   },
@@ -31,7 +31,8 @@ export function CollectionSection() {
     <section id="accessories" className="bg-background">
       {/* Section Title */}
       <div className="px-6 py-20 md:px-12 lg:px-20 md:py-10">
-        <h2 className="text-3xl font-medium tracking-tight text-foreground md:text-4xl">
+        <p className="eyebrow mb-4 text-foreground/50">05 — Products</p>
+        <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
           Our Products
         </h2>
       </div>
@@ -43,7 +44,7 @@ export function CollectionSection() {
           {accessories.map((accessory) => (
             <div key={accessory.id} className="group flex-shrink-0 w-[75vw] snap-center">
               {/* Image */}
-              <div className="relative aspect-[2/3] overflow-hidden rounded-2xl bg-secondary">
+              <div className="bracket-frame relative aspect-[2/3] overflow-hidden rounded-none bg-secondary">
                 <FadeImage
                   src={accessory.image || "/placeholder.svg"}
                   alt={accessory.name}
@@ -63,7 +64,7 @@ export function CollectionSection() {
                       {accessory.description}
                     </p>
                   </div>
-                  <span className="text-lg font-medium text-foreground">
+                  <span className="text-lg font-medium text-primary">
                     {accessory.price}
                   </span>
                 </div>
@@ -77,7 +78,7 @@ export function CollectionSection() {
           {accessories.map((accessory) => (
             <div key={accessory.id} className="group">
               {/* Image */}
-              <div className="relative aspect-[2/3] overflow-hidden rounded-2xl bg-secondary">
+              <div className="bracket-frame relative aspect-[2/3] overflow-hidden rounded-none bg-secondary">
                 <FadeImage
                   src={accessory.image || "/placeholder.svg"}
                   alt={accessory.name}
@@ -97,7 +98,7 @@ export function CollectionSection() {
                       {accessory.description}
                     </p>
                   </div>
-                  <span className="font-medium text-foreground text-2xl">
+                  <span className="font-medium text-primary text-2xl">
                     {accessory.price}
                   </span>
                 </div>

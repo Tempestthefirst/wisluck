@@ -83,6 +83,7 @@ export function GallerySection() {
   }, [updateTransform]);
 
   const isLastImage = images.length - 1;
+  const currentIndex = Math.min(images.length - 1, Math.floor(scrollProgress * images.length));
   
   // Calculate fullscreen progress for the last image - more gradual
   // Start expanding when last image is 80% stacked, finish at end of section
@@ -100,7 +101,17 @@ export function GallerySection() {
       style={{ minHeight: `${(images.length + 1) * 100}vh` }}
     >
       {/* Sticky container */}
-      <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center px-4">
+      <div className="sticky top-0 h-dvh overflow-hidden flex items-center justify-center px-4">
+        <p className="eyebrow pointer-events-none absolute left-6 top-24 z-20 text-white/50 md:left-12 lg:left-20">
+          04 — Gallery
+        </p>
+        <p className="eyebrow pointer-events-none absolute bottom-10 right-6 z-20 text-white/70 md:right-12 lg:right-20">
+          <span className="text-primary">{String(currentIndex + 1).padStart(2, "0")}</span>
+          {" / "}
+          {String(images.length).padStart(2, "0")}
+          <br />
+          <span className="text-white/50">{images[currentIndex]?.category}</span>
+        </p>
         <div className="relative w-full max-w-5xl h-[70vh] md:h-[80vh]">
           {images.map((image, index) => {
             const isLast = index === isLastImage;

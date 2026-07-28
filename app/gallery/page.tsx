@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Header } from "@/components/header";
 import { FooterSection } from "@/components/sections/footer-section";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import Image from "next/image";
 
 export default function GalleryPage() {
@@ -11,6 +12,7 @@ export default function GalleryPage() {
   const categories = [
     {
       id: 'fabrication',
+      code: '01',
       name: 'Fabrication & Engineering',
       description: 'Proof of custom craftsmanship, safety standards, and industrial durability',
       images: [
@@ -48,6 +50,7 @@ export default function GalleryPage() {
     },
     {
       id: 'exterior',
+      code: '02',
       name: 'Exterior Designs & Deployment',
       description: 'Scalability proof, clean finishes, and civil engineering excellence',
       images: [
@@ -85,6 +88,7 @@ export default function GalleryPage() {
     },
     {
       id: 'interior',
+      code: '03',
       name: 'Interior Comfort & Accommodation',
       description: 'Residential warmth, high-end comfort, and space optimization',
       images: [
@@ -122,6 +126,7 @@ export default function GalleryPage() {
     },
     {
       id: 'technical',
+      code: '04',
       name: 'Technical Specs & Utilities',
       description: 'Electrical readiness and structural integrity proof',
       images: [
@@ -166,90 +171,88 @@ export default function GalleryPage() {
       <Header />
 
       {/* Hero */}
-      <section className="px-6 py-20 md:px-12 lg:px-20 md:py-32 bg-foreground text-background">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Project Gallery</h1>
-          <p className="text-xl leading-relaxed opacity-90">
-            Explore our portfolio of completed projects showcasing our fabrication expertise, professional installations, comfortable interiors, and technical excellence.
+      <section className="border-b border-border bg-foreground px-6 pb-16 pt-32 text-background md:px-12 md:pb-24 md:pt-40 lg:px-20">
+        <ScrollReveal className="max-w-4xl" y={16} stagger={0.1}>
+          <p className="eyebrow mb-6 text-primary">The Record</p>
+          <h1 className="font-display text-5xl font-black leading-[0.95] tracking-tight md:text-7xl">
+            Project Gallery
+          </h1>
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-background/70 md:text-xl">
+            Our portfolio of completed projects — fabrication expertise, professional installations, comfortable interiors, and technical execution.
           </p>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* Category Tabs */}
-      <section className="px-6 py-12 md:px-12 lg:px-20 bg-accent/5 border-b border-border">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-wrap gap-4">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                  activeCategory === cat.id
-                    ? 'bg-foreground text-background'
-                    : 'bg-background text-foreground border border-border hover:border-foreground'
-                }`}
-              >
-                {cat.name}
-              </button>
-            ))}
-          </div>
+      <section className="sticky top-16 z-30 border-b border-border bg-background/95 px-6 py-6 backdrop-blur-md md:px-12 lg:px-20">
+        <div className="mx-auto flex max-w-6xl flex-wrap gap-x-8 gap-y-3">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`eyebrow flex items-center gap-2 border-b-2 pb-1 transition-colors ${
+                activeCategory === cat.id
+                  ? 'border-primary text-foreground'
+                  : 'border-transparent text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              <span className={activeCategory === cat.id ? "text-primary" : "text-foreground/30"}>{cat.code}</span>
+              {cat.name}
+            </button>
+          ))}
         </div>
       </section>
 
       {/* Category Description */}
       {activeTab && (
-        <section className="px-6 py-12 md:px-12 lg:px-20 bg-background">
-          <div className="max-w-6xl mx-auto mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">{activeTab.name}</h2>
-            <p className="text-lg text-muted-foreground">{activeTab.description}</p>
+        <section className="bg-background px-6 py-16 md:px-12 lg:px-20">
+          <div className="mx-auto mb-12 max-w-6xl">
+            <p className="eyebrow mb-3 text-primary">{activeTab.code} — {activeTab.name}</p>
+            <p className="max-w-2xl text-lg text-muted-foreground">{activeTab.description}</p>
           </div>
 
           {/* Images Grid */}
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="mx-auto max-w-6xl">
+            <ScrollReveal className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" y={24}>
               {activeTab.images.map((image, idx) => (
-                <div key={idx} className="group rounded-lg overflow-hidden bg-accent/5 hover:shadow-lg transition-shadow">
+                <div key={idx} className="bracket-frame group border border-border">
                   <div className="relative h-64 w-full overflow-hidden">
                     <Image
                       src={image.src}
                       alt={image.alt}
                       fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                  <div className="p-4">
+                  <div className="border-t border-border p-4">
                     <h3 className="font-semibold text-foreground">{image.caption}</h3>
-                    <p className="text-sm text-muted-foreground mt-1">{image.alt}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">{image.alt}</p>
                   </div>
                 </div>
               ))}
-            </div>
+            </ScrollReveal>
           </div>
         </section>
       )}
 
       {/* Portfolio Stats */}
-      <section className="px-6 py-20 md:px-12 lg:px-20 bg-foreground text-background">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">Our Track Record</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <p className="text-4xl font-bold mb-2">28+</p>
-              <p className="opacity-90">Completed Projects</p>
-            </div>
-            <div className="text-center">
-              <p className="text-4xl font-bold mb-2">500+</p>
-              <p className="opacity-90">Units Deployed</p>
-            </div>
-            <div className="text-center">
-              <p className="text-4xl font-bold mb-2">4</p>
-              <p className="opacity-90">Product Categories</p>
-            </div>
-            <div className="text-center">
-              <p className="text-4xl font-bold mb-2">100%</p>
-              <p className="opacity-90">Quality Guaranteed</p>
-            </div>
-          </div>
+      <section className="border-t border-border bg-foreground px-6 py-20 text-background md:px-12 lg:px-20">
+        <div className="mx-auto max-w-4xl">
+          <p className="eyebrow mb-4 text-center text-primary">Track Record</p>
+          <h2 className="mb-12 text-center font-display text-3xl font-bold md:text-4xl">Numbers from the field</h2>
+          <ScrollReveal className="grid grid-cols-2 divide-x divide-y divide-background/10 border border-background/10 md:grid-cols-4 md:divide-y-0" y={20}>
+            {[
+              { value: "28+", label: "Completed Projects" },
+              { value: "500+", label: "Units Deployed" },
+              { value: "4", label: "Product Categories" },
+              { value: "100%", label: "Quality Guaranteed" },
+            ].map((stat) => (
+              <div key={stat.label} className="p-8 text-center">
+                <p className="font-display text-4xl font-black text-primary md:text-5xl">{stat.value}</p>
+                <p className="eyebrow mt-2 text-background/60">{stat.label}</p>
+              </div>
+            ))}
+          </ScrollReveal>
         </div>
       </section>
 

@@ -74,8 +74,11 @@ export function PhilosophySection() {
     <section id="products" className="bg-background">
       {/* Scroll-Animated Product Grid */}
       <div ref={sectionRef} className="relative" style={{ height: "200vh" }}>
-        <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+        <div className="sticky top-0 h-dvh flex items-center justify-center overflow-hidden">
           <div className="relative w-full max-w-7xl px-4">
+            <p className="eyebrow pointer-events-none absolute left-4 top-[calc(50%-9rem)] text-foreground/50 md:left-12">
+              01 — Philosophy
+            </p>
             {/* Title - centered with 3D rotation */}
             <div 
               className="flex items-center justify-center pointer-events-none"
@@ -116,10 +119,13 @@ export function PhilosophySection() {
                     opacity = 0;
                   }
                   
+                  const words = title.split(" ");
+                  const lastWord = words.pop();
+
                   return (
                     <h2 
                       key={index}
-                      className="absolute inset-0 flex items-center justify-center text-[8vw] sm:text-[7vw] font-medium leading-tight tracking-tighter text-foreground md:text-[6vw] lg:text-[5vw] text-center px-4"
+                      className="absolute inset-0 flex items-center justify-center text-[8vw] sm:text-[7vw] font-bold leading-tight tracking-tight text-foreground md:text-[6vw] lg:text-[5vw] text-center px-4"
                       style={{
                         transform: `rotateX(${rotateX}deg) translateZ(0)`,
                         opacity,
@@ -130,7 +136,8 @@ export function PhilosophySection() {
                         WebkitFontSmoothing: 'antialiased',
                       }}
                     >
-                      {title}
+                      {words.join(" ")}{words.length > 0 ? " " : ""}
+                      <span className="text-primary">{lastWord}</span>
                     </h2>
                   );
                 })}

@@ -6,6 +6,9 @@ import { FooterSection } from "@/components/sections/footer-section";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { ScrollReveal } from "@/components/scroll-reveal";
+import { Magnetic } from "@/components/magnetic";
+import { trackLeadSubmit, trackContactClick } from "@/lib/gtag";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -17,7 +20,8 @@ export default function ContactPage() {
     message: '',
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -27,11 +31,26 @@ export default function ContactPage() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    setSubmitted(true);
-    setTimeout(() => {
+    setStatus("submitting");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+
+      setStatus("success");
+      trackLeadSubmit("contact_page");
       setFormData({
         name: '',
         email: '',
@@ -40,15 +59,19 @@ export default function ContactPage() {
         subject: '',
         message: '',
       });
-      setSubmitted(false);
-    }, 3000);
+    } catch (err) {
+      setStatus("error");
+      setErrorMessage(
+        err instanceof Error ? err.message : "Something went wrong. Please try again."
+      );
+    }
   };
 
   const contactInfo = [
     {
       label: 'Email',
-      value: 'wisluckgis2025@gmail.com',
-      href: 'mailto:wisluckgis2025@gmail.com',
+      value: 'infoteam@wisluck.com',
+      href: 'mailto:infoteam@wisluck.com',
     },
     {
       label: 'Phone',
@@ -72,77 +95,89 @@ export default function ContactPage() {
       <Header />
 
       {/* Hero */}
-      <section className="px-6 py-20 md:px-12 lg:px-20 md:py-32 bg-foreground text-background">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Get in Touch</h1>
-          <p className="text-xl leading-relaxed opacity-90">
+      <section className="border-b border-border bg-foreground px-6 pb-16 pt-32 text-background md:px-12 md:pb-24 md:pt-40 lg:px-20">
+        <ScrollReveal className="max-w-4xl" y={16} stagger={0.1}>
+          <p className="eyebrow mb-6 text-primary">Start a Project</p>
+          <h1 className="font-display text-5xl font-black leading-[0.95] tracking-tight md:text-7xl">
+            Get in Touch
+          </h1>
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-background/70 md:text-xl">
             Have a project in mind? Contact WISLUCK for custom portable solutions tailored to your needs. Our team is ready to assist you.
           </p>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* Main Content */}
       <section className="px-6 py-20 md:px-12 lg:px-20">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-3">
           {/* Contact Information */}
           <div className="lg:col-span-1">
-            <h2 className="text-2xl font-bold text-foreground mb-8">Contact Information</h2>
+            <p className="eyebrow mb-3 text-foreground/50">Contact Information</p>
+            <h2 className="mb-8 font-display text-2xl font-bold text-foreground">Reach the team directly</h2>
 
-            <div className="space-y-6">
+            <ScrollReveal className="border border-border" y={12} stagger={0.06}>
               {contactInfo.map((info, idx) => (
-                <div key={idx}>
-                  <p className="text-sm font-semibold text-muted-foreground uppercase mb-2">{info.label}</p>
+                <div key={idx} className={`px-5 py-4 ${idx !== contactInfo.length - 1 ? "border-b border-border" : ""}`}>
+                  <p className="eyebrow mb-2 text-foreground/40">{info.label}</p>
                   {info.href !== '#' ? (
                     <a
                       href={info.href}
-                      className="text-lg text-foreground hover:text-primary transition-colors font-medium"
+                      onClick={() => trackContactClick(info.href.startsWith("tel:") ? "phone" : "email")}
+                      className="font-medium text-foreground transition-colors hover:text-primary"
                     >
                       {info.value}
                     </a>
                   ) : (
-                    <p className="text-lg text-foreground">{info.value}</p>
+                    <p className="text-foreground">{info.value}</p>
                   )}
                 </div>
               ))}
-            </div>
+            </ScrollReveal>
 
             {/* Business Hours */}
-            <div className="mt-12 pt-8 border-t border-border">
-              <p className="text-sm font-semibold text-muted-foreground uppercase mb-4">Business Hours</p>
+            <div className="mt-10">
+              <p className="eyebrow mb-4 text-foreground/50">Business Hours</p>
               <div className="space-y-2 text-foreground">
-                <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
-                <p>Saturday: 9:00 AM - 2:00 PM</p>
-                <p>Sunday: Closed</p>
+                <p className="flex justify-between border-b border-border pb-2"><span>Monday – Friday</span><span className="font-mono text-muted-foreground">8:00 – 17:00</span></p>
+                <p className="flex justify-between border-b border-border pb-2"><span>Saturday</span><span className="font-mono text-muted-foreground">9:00 – 14:00</span></p>
+                <p className="flex justify-between"><span>Sunday</span><span className="font-mono text-muted-foreground">Closed</span></p>
               </div>
             </div>
 
             {/* Services Available */}
-            <div className="mt-8">
-              <p className="text-sm font-semibold text-muted-foreground uppercase mb-4">What We Offer</p>
-              <ul className="space-y-2 text-foreground">
-                <li>✓ Mobile Offices</li>
-                <li>✓ Mobile Homes</li>
-                <li>✓ Mobile Toilets</li>
-                <li>✓ Custom Solutions</li>
-                <li>✓ Installation & Delivery</li>
+            <div className="mt-10">
+              <p className="eyebrow mb-4 text-foreground/50">What We Offer</p>
+              <ul className="space-y-2.5 text-foreground">
+                {["Welding & Fabrication", "Portacabins & Modular Units", "Container Offices & Mobile Toilets", "Sandwich Panel Supply (Nationwide)"].map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <span className="h-1.5 w-1.5 shrink-0 bg-primary" />
+                    {item}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
 
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <h2 className="text-2xl font-bold text-foreground mb-8">Send Us a Message</h2>
+            <p className="eyebrow mb-3 text-foreground/50">Project Enquiry</p>
+            <h2 className="mb-8 font-display text-2xl font-bold text-foreground">Send us a message</h2>
 
-            {submitted && (
-              <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
-                <p className="text-green-600 font-medium">Thank you! We&apos;ll get back to you shortly.</p>
+            {status === "success" && (
+              <div className="mb-6 border border-primary bg-primary/5 p-4">
+                <p className="font-medium text-primary">Thank you — we&apos;ll get back to you shortly.</p>
+              </div>
+            )}
+            {status === "error" && (
+              <div className="mb-6 border border-destructive bg-destructive/5 p-4">
+                <p className="font-medium text-destructive">{errorMessage}</p>
               </div>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Full Name*</label>
+                  <label className="eyebrow mb-2 block text-foreground/60">Full Name*</label>
                   <Input
                     type="text"
                     name="name"
@@ -150,11 +185,11 @@ export default function ContactPage() {
                     onChange={handleChange}
                     placeholder="Your name"
                     required
-                    className="w-full"
+                    className="w-full rounded-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Email*</label>
+                  <label className="eyebrow mb-2 block text-foreground/60">Email*</label>
                   <Input
                     type="email"
                     name="email"
@@ -162,14 +197,14 @@ export default function ContactPage() {
                     onChange={handleChange}
                     placeholder="Your email"
                     required
-                    className="w-full"
+                    className="w-full rounded-none"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Phone*</label>
+                  <label className="eyebrow mb-2 block text-foreground/60">Phone*</label>
                   <Input
                     type="tel"
                     name="phone"
@@ -177,53 +212,56 @@ export default function ContactPage() {
                     onChange={handleChange}
                     placeholder="Your phone number"
                     required
-                    className="w-full"
+                    className="w-full rounded-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Company</label>
+                  <label className="eyebrow mb-2 block text-foreground/60">Company</label>
                   <Input
                     type="text"
                     name="company"
                     value={formData.company}
                     onChange={handleChange}
                     placeholder="Your company"
-                    className="w-full"
+                    className="w-full rounded-none"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Subject*</label>
+                <label className="eyebrow mb-2 block text-foreground/60">Subject*</label>
                 <Input
                   type="text"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  placeholder="e.g., Mobile Office Quote"
+                  placeholder="e.g., Portacabin Quote"
                   required
-                  className="w-full"
+                  className="w-full rounded-none"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Message*</label>
+                <label className="eyebrow mb-2 block text-foreground/60">Message*</label>
                 <Textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell us about your project requirements..."
                   required
-                  className="w-full min-h-48"
+                  className="w-full min-h-48 rounded-none"
                 />
               </div>
 
-              <Button
-                type="submit"
-                className="w-full bg-foreground text-background hover:bg-muted-foreground py-3 text-lg font-medium"
-              >
-                Send Message
-              </Button>
+              <Magnetic strength={0.12} className="block w-full">
+                <Button
+                  type="submit"
+                  disabled={status === "submitting"}
+                  className="w-full rounded-none border border-foreground bg-foreground py-6 text-lg font-medium text-background transition-colors duration-300 hover:bg-transparent hover:text-foreground disabled:opacity-60"
+                >
+                  {status === "submitting" ? "Sending…" : "Send Message"}
+                </Button>
+              </Magnetic>
 
               <p className="text-sm text-muted-foreground">
                 * Required fields. We&apos;ll respond within 24 hours.
@@ -234,11 +272,15 @@ export default function ContactPage() {
       </section>
 
       {/* Why Choose WISLUCK */}
-      <section className="px-6 py-20 md:px-12 lg:px-20 bg-accent/5">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-foreground text-center">Why Choose WISLUCK</h2>
+      <section className="border-t border-border bg-foreground px-6 py-20 text-background md:px-12 lg:px-20">
+        <div className="mx-auto max-w-6xl">
+          <p className="eyebrow mb-4 text-primary">Why WISLUCK</p>
+          <h2 className="mb-12 text-center font-display text-3xl font-bold md:text-4xl">Built to earn the next order</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <ScrollReveal
+            className="grid grid-cols-1 gap-px overflow-hidden border border-background/10 bg-background/10 md:grid-cols-4"
+            y={20}
+          >
             {[
               {
                 title: 'Custom Solutions',
@@ -257,12 +299,13 @@ export default function ContactPage() {
                 description: 'Experienced professionals managing every phase of your project.',
               },
             ].map((item, idx) => (
-              <div key={idx} className="bg-background p-6 rounded-lg border border-border hover:border-foreground transition-colors">
-                <h3 className="font-bold text-foreground mb-3">{item.title}</h3>
-                <p className="text-muted-foreground text-sm">{item.description}</p>
+              <div key={idx} className="bg-foreground p-6">
+                <p className="eyebrow mb-3 text-primary">{String(idx + 1).padStart(2, "0")}</p>
+                <h3 className="mb-3 font-bold text-background">{item.title}</h3>
+                <p className="text-sm text-background/60">{item.description}</p>
               </div>
             ))}
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 

@@ -88,6 +88,15 @@ export function TechnologySection() {
   const textSectionRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [textProgress, setTextProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
   
   const descriptionText = "WISLUCK portacabins feature advanced modular construction for infinite customization. Each unit is engineered with reinforced steel frames and premium weatherproofing to endure extreme conditions. Our rapid deployment system ensures installation completion within days, not weeks. Energy-efficient designs with thermal insulation reduce operational costs while maintaining premium comfort standards.";
 
@@ -133,10 +142,10 @@ export function TechnologySection() {
   const imageProgress = Math.max(0, Math.min(1, (scrollProgress - 0.2) / 0.8));
   
   // Smooth interpolations
-  const centerWidth = 100 - (imageProgress * 58); // 100% to 42%
+  const centerWidth = isMobile ? 100 : 100 - (imageProgress * 58); // mobile stays full width, desktop 100%->42%
   const centerHeight = 100 - (imageProgress * 30); // 100% to 70%
-  const sideWidth = imageProgress * 22; // 0% to 22%
-  const sideOpacity = imageProgress;
+  const sideWidth = isMobile ? 0 : imageProgress * 22; // mobile: no flanking strips, desktop 0%->22%
+  const sideOpacity = isMobile ? 0 : imageProgress;
   const sideTranslateLeft = -100 + (imageProgress * 100); // -100% to 0%
   const sideTranslateRight = 100 - (imageProgress * 100); // 100% to 0%
   const gap = imageProgress * 16; // 0px to 16px
@@ -147,7 +156,13 @@ export function TechnologySection() {
   return (
     <section ref={sectionRef} className="relative bg-foreground">
       {/* Sticky container for scroll animation */}
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div className="sticky top-0 h-dvh overflow-hidden">
+        <p
+          className="eyebrow pointer-events-none absolute left-6 top-24 z-20 text-background/50 md:left-12 lg:left-20"
+          style={{ opacity: titleOpacity }}
+        >
+          03 — Capability
+        </p>
         <div className="flex h-full w-full items-center justify-center">
           {/* Bento Grid Container */}
           <div 
@@ -250,9 +265,10 @@ export function TechnologySection() {
                   return (
                     <h2 
                       key={cycleIndex}
-                      className="absolute max-w-3xl font-medium leading-tight tracking-tight text-white md:text-5xl lg:text-7xl text-5xl"
+                      className="absolute max-w-3xl font-bold leading-tight tracking-tight text-white text-2xl sm:text-3xl md:text-5xl lg:text-7xl"
                     >
                       {words.map((word, wordIndex) => {
+                        const isLastWord = wordIndex === words.length - 1;
                         let wordOpacity = 0;
                         let wordBlur = 40;
                         
@@ -278,7 +294,7 @@ export function TechnologySection() {
                         return (
                           <span
                             key={wordIndex}
-                            className="inline-block"
+                            className={`inline-block ${isLastWord ? "text-primary" : ""}`}
                             style={{
                               opacity: wordOpacity,
                               filter: `blur(${wordBlur}px)`,

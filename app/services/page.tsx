@@ -1,81 +1,87 @@
 import { Header } from "@/components/header";
 import { FooterSection } from "@/components/sections/footer-section";
 import { Button } from "@/components/ui/button";
+import { ScrollReveal } from "@/components/scroll-reveal";
+import { Magnetic } from "@/components/magnetic";
 import Image from "next/image";
 
 export default function ServicesPage() {
   const services = [
     {
       id: 1,
-      title: "Mobile Offices",
-      description: "Fully equipped portable office spaces for remote work, site management, and field operations.",
+      code: "WF-01",
+      title: "Welding & Fabrication",
+      description: "All kinds of welding and fabrication jobs — structural steel, custom metalwork, and industrial fabrication carried out to spec by an experienced crew.",
       features: [
-        "Customizable layouts",
-        "Built-in workstations",
-        "Climate controlled",
-        "Electrical systems pre-installed",
+        "Structural & industrial welding",
+        "Custom metal fabrication",
+        "On-site and workshop jobs",
+        "Full PPE & safety compliance",
       ],
       specs: {
-        "Installation Time": "2-5 Days",
-        "Dimensions": "3m × 6m - 4m × 12m",
-        "Load Capacity": "Up to 15 tons",
-        "Temperature Range": "-40°C to +60°C",
+        "Turnaround": "Scoped per job",
+        "Materials": "Mild & stainless steel",
+        "Capacity": "Structural to light fabrication",
+        "Standards": "Full safety compliance",
       },
-      image: "/images/image_20.jpg",
+      image: "/images/image_27.jpg",
     },
     {
       id: 2,
-      title: "Mobile Homes",
-      description: "Comfortable residential cabins with full amenities, modern interiors, and flexible customization.",
+      code: "PC-02",
+      title: "Portacabins & Modular Units",
+      description: "Fabrication and installation of all types and sizes of portacabins using PUF or Polystyrene prefabricated sandwich panels — including modular units and house boat accommodation cabins.",
       features: [
-        "Double & single occupancy",
-        "En-suite bathrooms",
-        "Kitchen facilities",
-        "Thermal insulation",
+        "PUF & polystyrene sandwich panels",
+        "Any type or size, made to order",
+        "Modular units",
+        "House boat accommodation cabins",
       ],
       specs: {
-        "Installation Time": "3-7 Days",
-        "Dimensions": "3m × 6m - 4m × 14m",
-        "Occupancy": "1-8 persons per unit",
-        "Amenities": "Full utilities included",
+        "Installation Time": "2-7 Days",
+        "Panel Types": "PUF / Polystyrene",
+        "Dimensions": "Any size, made to order",
+        "Weather Rating": "-40°C to +60°C",
       },
-      image: "/images/image_16.jpg",
+      image: "/images/image_24.jpg",
     },
     {
       id: 3,
-      title: "Mobile Toilets",
-      description: "Hygienic sanitation solutions for construction sites, events, and remote field locations.",
+      code: "CT-03",
+      title: "Container Offices & Mobile Toilets",
+      description: "Repurposed and custom-built container offices alongside self-contained mobile toilet units for construction sites, events, and remote field locations.",
       features: [
-        "Self-contained units",
+        "Container office conversions",
+        "Self-contained mobile toilets",
         "Water & waste systems",
-        "Ventilation included",
-        "Easy maintenance",
+        "Rapid site deployment",
       ],
       specs: {
-        "Installation Time": "1-2 Days",
-        "Dimensions": "1.2m × 2m",
-        "Capacity": "Up to 500 uses/day",
-        "Features": "Biodegradable systems",
+        "Installation Time": "1-5 Days",
+        "Unit Types": "Office & sanitation",
+        "Deployment": "Site-ready on delivery",
+        "Maintenance": "Low-upkeep systems",
       },
-      image: "/images/image_23.jpg",
+      image: "/images/image_19.jpg",
     },
     {
       id: 4,
-      title: "Storage Solutions",
-      description: "Secure, weatherproof storage cabins for equipment, materials, and inventory management.",
+      code: "SP-04",
+      title: "Sandwich Panel Supply",
+      description: "Supply of any kind of sandwich panels to any part of the country — for builders, fabricators, and contractors sourcing insulated panel material directly.",
       features: [
-        "Heavy-duty construction",
-        "Key-locked doors",
-        "Ventilation options",
-        "Stackable design",
+        "PUF & polystyrene core panels",
+        "Nationwide supply & delivery",
+        "Bulk & custom orders",
+        "Direct from fabricator",
       ],
       specs: {
-        "Installation Time": "1-3 Days",
-        "Dimensions": "2m × 3m - 3m × 6m",
-        "Load Capacity": "Up to 20 tons",
-        "Security": "Industrial-grade locks",
+        "Coverage": "Nationwide",
+        "Panel Types": "PUF / Polystyrene",
+        "Order Type": "Bulk or custom",
+        "Sourcing": "Direct from fabricator",
       },
-      image: "/images/image_18.jpg",
+      image: "/images/image_28.jpg",
     },
   ];
 
@@ -102,61 +108,72 @@ export default function ServicesPage() {
       <Header />
 
       {/* Hero */}
-      <section className="px-6 py-20 md:px-12 lg:px-20 md:py-32 bg-foreground text-background">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Services</h1>
-          <p className="text-xl leading-relaxed opacity-90">
-            WISLUCK delivers premium portable accommodations engineered for durability, rapid deployment, and infinite customization. Each solution is built to withstand extreme conditions while providing comfort and reliability.
+      <section className="relative border-b border-border bg-foreground px-6 pb-16 pt-32 text-background md:px-12 md:pb-24 md:pt-40 lg:px-20">
+        <ScrollReveal className="max-w-4xl" y={16} stagger={0.1}>
+          <p className="eyebrow mb-6 text-primary">What We Build</p>
+          <h1 className="font-display text-5xl font-black leading-[0.95] tracking-tight md:text-7xl">
+            Fabricated to spec.<br />Deployed in days.
+          </h1>
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-background/70 md:text-xl">
+            WISLUCK delivers welding and fabrication, portacabins and modular units, container conversions, and sandwich panel supply — engineered for durability, rapid deployment, and infinite customization.
           </p>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* Main Services Grid */}
       <section className="px-6 py-20 md:px-12 lg:px-20">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-16 text-foreground">Core Products</h2>
+        <div className="mx-auto max-w-6xl">
+          <p className="eyebrow mb-4 text-foreground/50">Core Products</p>
+          <h2 className="mb-16 font-display text-3xl font-bold text-foreground md:text-4xl">
+            Four product lines, one fabrication standard.
+          </h2>
 
-          <div className="space-y-20">
+          <div className="divide-y divide-border border-y border-border">
             {services.map((service, idx) => (
-              <div key={service.id} className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center ${idx % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+              <ScrollReveal
+                key={service.id}
+                className="grid grid-cols-1 gap-10 py-16 md:grid-cols-2 md:gap-16"
+                y={32}
+                stagger={0.15}
+              >
                 {/* Content */}
-                <div className={idx % 2 === 1 ? 'md:order-2' : ''}>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">{service.title}</h3>
-                  <p className="text-lg text-muted-foreground mb-6 leading-relaxed">{service.description}</p>
+                <div className={idx % 2 === 1 ? "md:order-2" : ""}>
+                  <p className="eyebrow mb-3 text-primary">{service.code}</p>
+                  <h3 className="mb-4 font-display text-3xl font-bold text-foreground md:text-4xl">{service.title}</h3>
+                  <p className="mb-8 text-lg leading-relaxed text-muted-foreground">{service.description}</p>
 
                   {/* Features */}
                   <div className="mb-8">
-                    <h4 className="font-semibold text-foreground mb-3">Key Features:</h4>
+                    <p className="eyebrow mb-3 text-foreground/60">Key Features</p>
                     <ul className="space-y-2">
                       {service.features.map((feature, i) => (
                         <li key={i} className="flex items-start gap-3">
-                          <span className="text-primary font-bold mt-1">•</span>
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-primary" />
                           <span className="text-muted-foreground">{feature}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  {/* Specs */}
-                  <div className="bg-accent/10 p-6 rounded-lg mb-8">
-                    <h4 className="font-semibold text-foreground mb-4">Technical Specifications:</h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {Object.entries(service.specs).map(([key, value]) => (
-                        <div key={key}>
-                          <p className="text-xs font-semibold text-muted-foreground uppercase">{key}</p>
-                          <p className="text-foreground font-medium">{value}</p>
+                  {/* Specs — spec plate */}
+                  <div className="border border-border">
+                    <p className="eyebrow border-b border-border px-5 py-3 text-foreground/60">Technical Specifications</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2">
+                      {Object.entries(service.specs).map(([key, value], i) => (
+                        <div
+                          key={key}
+                          className={`px-5 py-4 ${i % 2 === 0 ? "sm:border-r" : ""} ${i < Object.entries(service.specs).length - 2 ? "border-b" : ""} border-border`}
+                        >
+                          <p className="eyebrow text-foreground/40">{key}</p>
+                          <p className="mt-1 font-mono font-medium text-foreground">{value}</p>
                         </div>
                       ))}
                     </div>
                   </div>
-
-                  <Button className="bg-foreground text-background hover:bg-muted-foreground">
-                    Learn More
-                  </Button>
                 </div>
 
                 {/* Image */}
-                <div className={`relative h-64 md:h-96 rounded-lg overflow-hidden ${idx % 2 === 1 ? 'md:order-1' : ''}`}>
+                <div className={`bracket-frame relative h-64 overflow-hidden md:h-full md:min-h-[420px] ${idx % 2 === 1 ? "md:order-1" : ""}`}>
                   <Image
                     src={service.image}
                     alt={service.title}
@@ -164,52 +181,59 @@ export default function ServicesPage() {
                     className="object-cover"
                   />
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* Fabrication Proof Section */}
-      <section className="px-6 py-20 md:px-12 lg:px-20 bg-accent/5">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Quality Assurance</h2>
-          <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
-            Every WISLUCK product meets stringent fabrication and engineering standards, backed by our commitment to safety, durability, and excellence.
-          </p>
+      <section className="border-t border-border bg-foreground px-6 py-20 text-background md:px-12 lg:px-20">
+        <div className="mx-auto max-w-6xl">
+          <ScrollReveal y={16}>
+            <p className="eyebrow mb-4 text-primary">Quality Assurance</p>
+            <h2 className="mb-4 font-display text-3xl font-bold md:text-4xl">Every unit meets the same standard.</h2>
+            <p className="mb-12 max-w-2xl text-lg text-background/70">
+              Every WISLUCK product meets stringent fabrication and engineering standards, backed by our commitment to safety, durability, and excellence.
+            </p>
+          </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <ScrollReveal className="grid grid-cols-1 gap-px overflow-hidden border border-background/10 bg-background/10 md:grid-cols-3" y={28}>
             {fabricationProof.map((item, idx) => (
-              <div key={idx} className="rounded-lg overflow-hidden bg-background shadow-sm hover:shadow-md transition-shadow">
-                <div className="relative h-64 w-full">
+              <div key={idx} className="group bg-foreground">
+                <div className="relative h-64 w-full overflow-hidden">
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="font-bold text-lg text-foreground mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.description}</p>
+                  <p className="eyebrow mb-2 text-primary">{String(idx + 1).padStart(2, "0")}</p>
+                  <h3 className="mb-2 text-lg font-bold text-background">{item.title}</h3>
+                  <p className="text-background/60">{item.description}</p>
                 </div>
               </div>
             ))}
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="px-6 py-20 md:px-12 lg:px-20 bg-foreground text-background">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready for a Custom Solution?</h2>
-          <p className="text-lg opacity-90 mb-8">
+      <section className="px-6 py-24 text-center md:px-12 lg:px-20">
+        <ScrollReveal className="mx-auto max-w-3xl" y={16}>
+          <p className="eyebrow mb-4 text-foreground/50">Start a Project</p>
+          <h2 className="mb-6 font-display text-3xl font-bold text-foreground md:text-5xl">Ready for a custom solution?</h2>
+          <p className="mb-8 text-lg text-muted-foreground">
             Contact our team to discuss your specific requirements and get a customized quote.
           </p>
-          <Button className="bg-background text-foreground hover:bg-background/90 px-8 py-3 text-lg">
-            Get in Touch
-          </Button>
-        </div>
+          <Magnetic strength={0.3} className="inline-block">
+            <Button asChild className="rounded-none border border-foreground bg-foreground px-8 py-6 text-lg text-background hover:bg-transparent hover:text-foreground">
+              <a href="/contact">Get in Touch</a>
+            </Button>
+          </Magnetic>
+        </ScrollReveal>
       </section>
 
       <FooterSection />

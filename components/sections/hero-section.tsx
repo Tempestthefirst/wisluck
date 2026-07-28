@@ -35,6 +35,15 @@ const sideImages = [
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,9 +72,12 @@ export function HeroSection() {
   const imageProgress = Math.max(0, Math.min(1, (scrollProgress - 0.2) / 0.8));
   
   // Smooth interpolations - More balanced distribution
-  const centerWidth = 100 - (imageProgress * 80); // 100% to 20% (same as each side image)
+  // Desktop: 5 columns at full expansion (20% each). Mobile: capped at 3
+  // columns (one image per side) so photos stay legible instead of
+  // shrinking into ~75px unrecognizable slivers.
+  const centerWidth = isMobile ? 100 - (imageProgress * 60) : 100 - (imageProgress * 80); // mobile 100%->40%, desktop 100%->20%
   const centerHeight = 100; // Always 100% height
-  const sideWidth = imageProgress * 40; // 0% to 40% (20% per image, 2 images = 40%)
+  const sideWidth = isMobile ? imageProgress * 30 : imageProgress * 40; // mobile 0%->30% (1 image), desktop 0%->40% (2 images)
   const sideOpacity = imageProgress;
   const sideTranslateLeft = -100 + (imageProgress * 100); // -100% to 0%
   const sideTranslateRight = 100 - (imageProgress * 100); // 100% to 0%
@@ -75,10 +87,32 @@ export function HeroSection() {
   // Vertical offset for side columns to move them up on mobile
   const sideTranslateY = -(imageProgress * 15); // Move up by 15% when fully expanded
 
+  const leftImages = sideImages.filter((img) => img.position === "left").slice(0, isMobile ? 1 : 2);
+  const rightImages = sideImages.filter((img) => img.position === "right").slice(0, isMobile ? 1 : 2);
+
   return (
     <section ref={sectionRef} className="relative bg-background">
       {/* Sticky container for scroll animation */}
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div className="sticky top-0 h-dvh overflow-hidden">
+        {/* Fixed corner marks — top-left eyebrow, bottom-right coordinates */}
+        <div
+          className="pointer-events-none absolute left-6 top-24 z-20 md:left-12 lg:left-20"
+          style={{ opacity: textOpacity }}
+        >
+          <p className="eyebrow text-foreground/60">
+            Port Harcourt<br />Modular Fabrication
+          </p>
+        </div>
+        <div
+          className="pointer-events-none absolute bottom-32 right-6 z-20 md:right-12 lg:right-20"
+          style={{ opacity: textOpacity }}
+        >
+          <p className="eyebrow text-right text-foreground/60">
+            Est. Nigeria<br />
+            <span className="text-primary">Steel &amp; Panel</span>
+          </p>
+        </div>
+
         <div className="flex h-full w-full items-center justify-center">
           {/* Bento Grid Container */}
           <div 
@@ -96,7 +130,7 @@ export function HeroSection() {
                 opacity: sideOpacity,
               }}
             >
-              {sideImages.filter(img => img.position === "left").map((img, idx) => (
+              {leftImages.map((img, idx) => (
                 <div 
                   key={idx} 
                   className="relative h-full overflow-hidden will-change-transform"
@@ -130,7 +164,7 @@ export function HeroSection() {
                 className="absolute inset-0 z-0 flex items-center justify-center"
                 style={{ opacity: textOpacity, transform: 'translateY(-200px)' }}
               >
-                <h1 className="whitespace-nowrap text-[clamp(2.75rem,15vw,9rem)] font-bold leading-[0.8] tracking-tighter text-black">
+                <h1 className="whitespace-nowrap text-[clamp(2.75rem,15vw,9rem)] font-black leading-[0.8] tracking-tight text-foreground">
                   {word.split("").map((letter, index) => (
                     <span
                       key={index}
@@ -166,7 +200,7 @@ export function HeroSection() {
                 opacity: sideOpacity,
               }}
             >
-              {sideImages.filter(img => img.position === "right").map((img, idx) => (
+              {rightImages.map((img, idx) => (
                 <div 
                   key={idx} 
                   className="relative h-full overflow-hidden will-change-transform"
@@ -195,9 +229,9 @@ export function HeroSection() {
         style={{ opacity: textOpacity }}
       >
         <p className="mx-auto max-w-2xl text-center text-2xl leading-relaxed text-white md:text-3xl lg:text-[2.5rem] lg:leading-snug">
-          Portable Solutions
+          Portable solutions,
           <br />
-          for modern living.
+          <span className="text-primary">built for the field.</span>
         </p>
       </div>
 

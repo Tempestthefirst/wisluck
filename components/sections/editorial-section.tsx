@@ -3,10 +3,10 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 
 const specs = [
-  { label: "Installation Time", value: "2-7 Days" },
-  { label: "Weather Rating", value: "-40 to +60°C" },
-  { label: "Load Capacity", value: "Up to 15T" },
-  { label: "Customization", value: "100%" },
+  { label: "Installation Time", value: "2-7", unit: "Days" },
+  { label: "Weather Rating", value: "-40 / +60", unit: "°C" },
+  { label: "Load Capacity", value: "15", unit: "Tonnes" },
+  { label: "Customization", value: "100", unit: "%" },
 ];
 
 export function EditorialSection() {
@@ -59,12 +59,12 @@ export function EditorialSection() {
       {/* force-cropped into a wide banner, so none of the footage is lost */}
       <div className="bg-foreground px-6 py-20 md:py-28">
         <div className="mx-auto max-w-6xl">
-          <p className="mb-10 text-center text-xs uppercase tracking-widest text-background/60">
-            On Site With WISLUCK
+          <p className="eyebrow mb-10 text-center text-background/50">
+            06 — On Site With WISLUCK
           </p>
           <div
             ref={videoRef}
-            className="relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-2xl shadow-2xl md:max-w-md"
+            className="bracket-frame bracket-visible relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden shadow-2xl md:max-w-md"
           >
             <video
               autoPlay
@@ -85,18 +85,25 @@ export function EditorialSection() {
         </div>
       </div>
 
-      {/* Specs Grid */}
+      {/* Spec Plate — nameplate-style readout of the numbers that actually
+          differentiate a fabricated steel unit from a generic cabin */}
       <div className="grid grid-cols-2 border-t border-border md:grid-cols-4">
-        {specs.map((spec) => (
+        {specs.map((spec, i) => (
           <div
             key={spec.label}
-            className="border-b border-r border-border p-8 text-center last:border-r-0 md:border-b-0"
+            className="group relative border-b border-r border-border p-8 text-center last:border-r-0 even:border-r-0 md:border-b-0 md:even:border-r"
           >
-            <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
+            <span className="eyebrow absolute left-3 top-3 text-foreground/30">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <p className="eyebrow mb-3 text-muted-foreground">
               {spec.label}
             </p>
-            <p className="font-medium text-foreground text-5xl">
-              {spec.value}
+            <p className="font-display text-4xl font-bold text-foreground md:text-5xl">
+              <span className="text-primary">{spec.value}</span>
+              <span className="ml-1 font-mono text-lg font-medium text-muted-foreground md:text-xl">
+                {spec.unit}
+              </span>
             </p>
           </div>
         ))}
