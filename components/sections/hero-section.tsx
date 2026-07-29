@@ -1,242 +1,114 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import Link from "next/link";
+import { Magnetic } from "@/components/magnetic";
 
-const word = "WISLUCK";
-
-const sideImages = [
-  {
-    src: "/images/image_22.jpg",
-    alt: "Completed WISLUCK sandwich-panel cabin with clean exterior finish",
-    position: "left",
-    span: 1,
-  },
-  {
-    src: "/images/image_19.jpg",
-    alt: "Multi-unit WISLUCK site layout showing scalable deployment",
-    position: "left",
-    span: 1,
-  },
-  {
-    src: "/images/image_26.jpg",
-    alt: "WISLUCK crew in full PPE mounting structural steel roof beams",
-    position: "right",
-    span: 1,
-  },
-  {
-    src: "/images/image_3.jpg",
-    alt: "Completed WISLUCK portacabin unit with professional exterior finish",
-    position: "right",
-    span: 1,
-  },
-];
+const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    const update = () => setIsMobile(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-      
-      const rect = sectionRef.current.getBoundingClientRect();
-      const scrollableHeight = window.innerHeight * 2;
-      const scrolled = -rect.top;
-      const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
-      
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  // Text fades out first (0 to 0.2)
-  const textOpacity = Math.max(0, 1 - (scrollProgress / 0.2));
-  
-  // Image transforms start after text fades (0.2 to 1)
-  const imageProgress = Math.max(0, Math.min(1, (scrollProgress - 0.2) / 0.8));
-  
-  // Smooth interpolations - More balanced distribution
-  // Desktop: 5 columns at full expansion (20% each). Mobile: capped at 3
-  // columns (one image per side) so photos stay legible instead of
-  // shrinking into ~75px unrecognizable slivers.
-  const centerWidth = isMobile ? 100 - (imageProgress * 60) : 100 - (imageProgress * 80); // mobile 100%->40%, desktop 100%->20%
-  const centerHeight = 100; // Always 100% height
-  const sideWidth = isMobile ? imageProgress * 30 : imageProgress * 40; // mobile 0%->30% (1 image), desktop 0%->40% (2 images)
-  const sideOpacity = imageProgress;
-  const sideTranslateLeft = -100 + (imageProgress * 100); // -100% to 0%
-  const sideTranslateRight = 100 - (imageProgress * 100); // 100% to 0%
-  const borderRadius = 0; // No border radius
-  const gap = imageProgress * 8; // 0px to 8px
-  
-  // Vertical offset for side columns to move them up on mobile
-  const sideTranslateY = -(imageProgress * 15); // Move up by 15% when fully expanded
-
-  const leftImages = sideImages.filter((img) => img.position === "left").slice(0, isMobile ? 1 : 2);
-  const rightImages = sideImages.filter((img) => img.position === "right").slice(0, isMobile ? 1 : 2);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", shouldReduceMotion ? "0%" : "18%"]);
 
   return (
-    <section ref={sectionRef} className="relative bg-background">
-      {/* Sticky container for scroll animation */}
-      <div className="sticky top-0 h-dvh overflow-hidden">
-        {/* Fixed corner marks — top-left eyebrow, bottom-right coordinates */}
-        <div
-          className="pointer-events-none absolute left-6 top-24 z-20 md:left-12 lg:left-20"
-          style={{ opacity: textOpacity }}
-        >
-          <p className="eyebrow text-foreground/60">
-            Port Harcourt<br />Modular Fabrication
-          </p>
-        </div>
-        <div
-          className="pointer-events-none absolute bottom-32 right-6 z-20 md:right-12 lg:right-20"
-          style={{ opacity: textOpacity }}
-        >
-          <p className="eyebrow text-right text-foreground/60">
-            Est. Nigeria<br />
-            <span className="text-primary">Steel &amp; Panel</span>
-          </p>
-        </div>
-
-        <div className="flex h-full w-full items-center justify-center">
-          {/* Bento Grid Container */}
-          <div 
-            className="relative flex h-full w-full items-stretch justify-center"
-            style={{ gap: `${gap}px` }}
+    <section ref={sectionRef} className="relative overflow-hidden bg-background pt-32 pb-16 md:pt-40 md:pb-24">
+      <div className="grid grid-cols-1 items-center gap-12 px-6 md:grid-cols-2 md:gap-8 md:px-12 lg:px-20">
+        {/* Content */}
+        <div>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: EASE_PREMIUM }}
+            className="mb-6 inline-flex items-center gap-2 border border-border px-3 py-1.5"
           >
-            
-            {/* Left Column */}
-            <div 
-              className="flex h-full flex-row will-change-transform"
-              style={{
-                width: `${sideWidth}%`,
-                gap: `${gap}px`,
-                transform: `translateX(${sideTranslateLeft}%) translateY(${sideTranslateY}%)`,
-                opacity: sideOpacity,
-              }}
-            >
-              {leftImages.map((img, idx) => (
-                <div 
-                  key={idx} 
-                  className="relative h-full overflow-hidden will-change-transform"
-                  style={{
-                    flex: img.span,
-                    borderRadius: `${borderRadius}px`,
-                  }}
-                >
-                  <Image
-                    src={img.src || "/placeholder.svg"}
-                    alt={img.alt}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              ))}
-            </div>
+            <span className="h-1.5 w-1.5 shrink-0 bg-primary" />
+            <span className="eyebrow text-foreground/70">Port Harcourt · Modular Fabrication</span>
+          </motion.div>
 
-            {/* Main Hero Image - Center */}
-            <div 
-              className="relative overflow-hidden will-change-transform"
-              style={{
-                width: `${centerWidth}%`,
-                height: `${centerHeight}%`,
-                flex: "0 0 auto",
-                borderRadius: `${borderRadius}px`,
-              }}
-            >
-              {/* Text Behind - Fades out first */}
-              <div 
-                className="absolute inset-0 z-0 flex items-center justify-center"
-                style={{ opacity: textOpacity, transform: 'translateY(-200px)' }}
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: EASE_PREMIUM }}
+            className="font-display text-[13vw] font-black leading-[0.92] tracking-tight text-foreground sm:text-6xl md:text-6xl lg:text-7xl"
+          >
+            Portable solutions,
+            <br />
+            <span className="text-primary">built for the field.</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.22, ease: EASE_PREMIUM }}
+            className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground"
+          >
+            Welding, fabrication, portacabins, and modular units engineered for durability and rapid deployment — delivered anywhere in Nigeria.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.32, ease: EASE_PREMIUM }}
+            className="mt-9 flex flex-wrap items-center gap-4"
+          >
+            <Magnetic strength={0.3}>
+              <Link
+                href="/contact"
+                className="inline-block border border-foreground bg-foreground px-7 py-3.5 text-sm font-medium text-background transition-colors duration-300 hover:bg-transparent hover:text-foreground"
               >
-                <h1 className="whitespace-nowrap text-[clamp(2.75rem,15vw,9rem)] font-black leading-[0.8] tracking-tight text-foreground">
-                  {word.split("").map((letter, index) => (
-                    <span
-                      key={index}
-                      className="inline-block animate-[slideUp_0.8s_ease-out_forwards] opacity-0"
-                      style={{
-                        animationDelay: `${index * 0.08}s`,
-                        transition: 'all 1.5s',
-                        transitionTimingFunction: 'cubic-bezier(0.86, 0, 0.07, 1)',
-                      }}
-                    >
-                      {letter}
-                    </span>
-                  ))}
-                </h1>
-              </div>
-              
-              <Image
-                src="/images/Wisluck landing.jpg"
-                alt="WISLUCK steel-frame portacabin under construction on site"
-                fill
-                className="absolute inset-0 z-10 object-cover"
-                priority
-              />
-            </div>
-
-            {/* Right Column */}
-            <div 
-              className="flex h-full flex-row will-change-transform"
-              style={{
-                width: `${sideWidth}%`,
-                gap: `${gap}px`,
-                transform: `translateX(${sideTranslateRight}%) translateY(${sideTranslateY}%)`,
-                opacity: sideOpacity,
-              }}
-            >
-              {rightImages.map((img, idx) => (
-                <div 
-                  key={idx} 
-                  className="relative h-full overflow-hidden will-change-transform"
-                  style={{
-                    flex: img.span,
-                    borderRadius: `${borderRadius}px`,
-                  }}
-                >
-                  <Image
-                    src={img.src || "/placeholder.svg"}
-                    alt={img.alt}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-
-          </div>
+                Get a Quote
+              </Link>
+            </Magnetic>
+            <Magnetic strength={0.3}>
+              <Link
+                href="/gallery"
+                className="inline-block border border-foreground px-7 py-3.5 text-sm font-medium text-foreground transition-colors duration-300 hover:bg-foreground hover:text-background"
+              >
+                View Our Work
+              </Link>
+            </Magnetic>
+          </motion.div>
         </div>
-      </div>
 
-      {/* Tagline Section - Fixed at bottom */}
-      <div 
-        className="pointer-events-none fixed bottom-0 left-0 right-0 z-10 px-6 pb-12 md:px-12 md:pb-16 lg:px-20 lg:pb-20"
-        style={{ opacity: textOpacity }}
-      >
-        <p className="mx-auto max-w-2xl text-center text-2xl leading-relaxed text-white md:text-3xl lg:text-[2.5rem] lg:leading-snug">
-          Portable solutions,
-          <br />
-          <span className="text-primary">built for the field.</span>
-        </p>
-      </div>
+        {/* Visual */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.15, ease: EASE_PREMIUM }}
+          className="relative"
+        >
+          <div className="bracket-frame bracket-visible relative aspect-[4/5] w-full overflow-hidden md:aspect-[3/4]">
+            <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[10%] h-[120%] w-full">
+              <Image
+                src="/images/image_22.jpg"
+                alt="Completed WISLUCK portacabin unit"
+                fill
+                priority
+                className="object-cover"
+              />
+            </motion.div>
+          </div>
 
-      {/* Scroll space to enable animation */}
-      <div className="h-[200vh]" />
+          {/* Floating spec card */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6, ease: EASE_PREMIUM }}
+            className="absolute -bottom-6 -left-6 hidden border border-border bg-background px-6 py-4 shadow-[0_8px_30px_rgb(0,0,0,0.08)] sm:block"
+          >
+            <p className="font-display text-3xl font-black text-primary">28+</p>
+            <p className="eyebrow mt-1 text-muted-foreground">Completed Projects</p>
+          </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }

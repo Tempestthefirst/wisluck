@@ -4,6 +4,23 @@ import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { Magnetic } from "@/components/magnetic";
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Services | WISLUCK Global Industrial Services",
+  description:
+    "Welding & fabrication, portacabin and modular unit manufacturing, container offices, mobile toilets, and nationwide sandwich panel supply — Port Harcourt, Nigeria.",
+  alternates: {
+    canonical: "/services",
+  },
+  openGraph: {
+    title: "Services | WISLUCK Global Industrial Services",
+    description:
+      "Welding & fabrication, portacabin and modular unit manufacturing, container offices, mobile toilets, and nationwide sandwich panel supply — Port Harcourt, Nigeria.",
+    url: "/services",
+    images: ["/images/image_24.jpg"],
+  },
+};
 
 export default function ServicesPage() {
   const services = [
