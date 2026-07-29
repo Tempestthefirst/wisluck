@@ -1,0 +1,4 @@
+Read through the entire codebase to gain good understanding of what exactly is going on with the project.
+  Don't go reading the very heavy files, I just need you to apply a few fixes for me but you should apply
+  them with contextual knowledge with the environment.
+
