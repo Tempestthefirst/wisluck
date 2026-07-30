@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { GalleryClient } from "./gallery-client";
 
 export const metadata: Metadata = {
-  title: "Project Gallery | WISLUCK Global Industrial Services",
+  title: "Portacabin & Fabrication Project Gallery | WISLUCK",
   description:
     "Browse completed WISLUCK projects — welding & fabrication, portacabin and modular installations, interior fit-outs, and technical builds across Nigeria.",
   alternates: {

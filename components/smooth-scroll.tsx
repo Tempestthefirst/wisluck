@@ -34,9 +34,22 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     const onScroll = () => ScrollTrigger.update();
     lenisRef.current?.lenis?.on("scroll", onScroll);
 
+    // ScrollTrigger positions are calculated from layout as it exists at
+    // the moment each trigger is created. Images loading after that (very
+    // common — this site is image-heavy) shift the page height and can
+    // leave trigger start/end points stale, which can strand
+    // scroll-revealed content at opacity: 0 permanently. Recalculate once
+    // everything has actually finished loading, and again shortly after
+    // as a second pass for any late-loading assets.
+    const refresh = () => ScrollTrigger.refresh();
+    window.addEventListener("load", refresh);
+    const fallbackRefresh = setTimeout(refresh, 1500);
+
     return () => {
       gsap.ticker.remove(update);
       lenisRef.current?.lenis?.off("scroll", onScroll);
+      window.removeEventListener("load", refresh);
+      clearTimeout(fallbackRefresh);
     };
   }, [reduceMotion]);
 

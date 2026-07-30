@@ -83,30 +83,33 @@ export function HeroSection() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.15, ease: EASE_PREMIUM }}
-          className="relative"
+          className="relative flex justify-center md:justify-end"
         >
-          <div className="bracket-frame bracket-visible relative aspect-[4/5] w-full overflow-hidden md:aspect-[3/4]">
-            <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[10%] h-[120%] w-full">
+          <div className="relative w-full max-w-sm md:max-w-md">
+            {/* Grounding shadow beneath the unit */}
+            <div className="absolute bottom-6 left-1/2 h-10 w-[70%] -translate-x-1/2 rounded-full bg-foreground/15 blur-2xl" />
+
+            <motion.div style={{ y: imageY }} className="relative aspect-[406/492] w-full">
               <Image
-                src="/images/image_22.jpg"
-                alt="Completed WISLUCK portacabin unit"
+                src="/images/hero-mobile-toilet-cutout.png"
+                alt="WISLUCK mobile toilet cabin unit"
                 fill
                 priority
-                className="object-cover"
+                className="object-contain drop-shadow-2xl"
               />
             </motion.div>
-          </div>
 
-          {/* Floating spec card */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6, ease: EASE_PREMIUM }}
-            className="absolute -bottom-6 -left-6 hidden border border-border bg-background px-6 py-4 shadow-[0_8px_30px_rgb(0,0,0,0.08)] sm:block"
-          >
-            <p className="font-display text-3xl font-black text-primary">28+</p>
-            <p className="eyebrow mt-1 text-muted-foreground">Completed Projects</p>
-          </motion.div>
+            {/* Floating spec card */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6, ease: EASE_PREMIUM }}
+              className="absolute -bottom-2 -left-6 border border-border bg-background px-6 py-4 shadow-[0_8px_30px_rgb(0,0,0,0.08)] sm:-left-10"
+            >
+              <p className="font-display text-3xl font-black text-primary">28+</p>
+              <p className="eyebrow mt-1 text-muted-foreground">Completed Projects</p>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

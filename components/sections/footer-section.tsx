@@ -6,7 +6,7 @@ import { trackContactClick } from "@/lib/gtag";
 const footerLinks = {
   explore: [
     { label: "Welding & Fabrication", href: "/services" },
-    { label: "Portacabins & Modular Units", href: "/services" },
+    { label: "Portacabins & Mobile Homes", href: "/services" },
     { label: "Container Offices & Mobile Toilets", href: "/services" },
     { label: "Sandwich Panel Supply", href: "/services" },
   ],

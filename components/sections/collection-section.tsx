@@ -12,8 +12,8 @@ const accessories = [
   },
   {
     id: 2,
-    name: "Portacabins & Modular Units",
-    description: "PUF & polystyrene sandwich panel cabins, made to any type or size, including house boat accommodation",
+    name: "Portacabins & Mobile Homes",
+    description: "PUF & polystyrene sandwich panel cabins — mobile homes, offices and buildings, made to any type or size, including house boat accommodation",
     price: "From ₦3.8M",
     image: "/images/image_16.jpg",
   },

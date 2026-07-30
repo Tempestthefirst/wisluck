@@ -37,16 +37,27 @@ export function ContactClient() {
     setErrorMessage("");
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://formsubmit.co/ajax/infoteam@wisluck.com", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company || "—",
+          subject: formData.subject,
+          message: formData.message,
+          _subject: `WISLUCK enquiry: ${formData.subject}`,
+          _template: "table",
+          _captcha: "false",
+        }),
       });
 
-      const data = await res.json();
-
       if (!res.ok) {
-        throw new Error(data.error || "Something went wrong. Please try again.");
+        throw new Error();
       }
 
       setStatus("success");
@@ -59,10 +70,10 @@ export function ContactClient() {
         subject: '',
         message: '',
       });
-    } catch (err) {
+    } catch {
       setStatus("error");
       setErrorMessage(
-        err instanceof Error ? err.message : "Something went wrong. Please try again."
+        "We couldn't send your message right now. Please email us directly at infoteam@wisluck.com or call us."
       );
     }
   };

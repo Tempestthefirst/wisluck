@@ -7,9 +7,9 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Services | WISLUCK Global Industrial Services",
+  title: "Portacabins, Mobile Homes, Welding & Sandwich Panels | WISLUCK Services",
   description:
-    "Welding & fabrication, portacabin and modular unit manufacturing, container offices, mobile toilets, and nationwide sandwich panel supply — Port Harcourt, Nigeria.",
+    "Welding & fabrication, portacabins, mobile homes, offices and modular units, container offices, mobile toilets, and nationwide sandwich panel supply — Port Harcourt, Nigeria.",
   alternates: {
     canonical: "/services",
   },
@@ -46,12 +46,12 @@ export default function ServicesPage() {
     {
       id: 2,
       code: "PC-02",
-      title: "Portacabins & Modular Units",
-      description: "Fabrication and installation of all types and sizes of portacabins using PUF or Polystyrene prefabricated sandwich panels — including modular units and house boat accommodation cabins.",
+      title: "Portacabins, Mobile Homes & Modular Units",
+      description: "Fabrication and installation of all types and sizes of portacabins using PUF or Polystyrene prefabricated sandwich panels — mobile homes, offices, buildings, modular units, and house boat accommodation cabins.",
       features: [
+        "Mobile homes, offices & buildings",
         "PUF & polystyrene sandwich panels",
         "Any type or size, made to order",
-        "Modular units",
         "House boat accommodation cabins",
       ],
       specs: {

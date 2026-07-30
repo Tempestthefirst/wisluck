@@ -1,6 +1,7 @@
 import React from "react"
 import type { Metadata } from 'next'
-import { Big_Shoulders, Source_Sans_3, JetBrains_Mono } from 'next/font/google'
+// TEMP STUB
+// import { Big_Shoulders, Source_Sans_3, JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SmoothScroll } from '@/components/smooth-scroll'
 import { CustomCursor } from '@/components/custom-cursor'
@@ -8,28 +9,55 @@ import { PageTransition } from '@/components/page-transition'
 import { GoogleTag } from '@/components/google-tag'
 import './globals.css'
 
-const bigShoulders = Big_Shoulders({
-  subsets: ["latin"],
-  variable: '--font-big-shoulders',
-  weight: ['500', '600', '700', '800', '900'],
-})
+const bigShoulders = { variable: '--font-big-shoulders' }
+const sourceSans = { variable: '--font-source-sans' }
+const jetbrainsMono = { variable: '--font-jetbrains-mono' }
 
-const sourceSans = Source_Sans_3({
-  subsets: ["latin"],
-  variable: '--font-source-sans',
-  weight: ['300', '400', '500', '600', '700'],
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: '--font-jetbrains-mono',
-  weight: ['400', '500', '600'],
-})
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://wisluck.com'
 
 export const metadata: Metadata = {
-  title: 'WISLUCK Global Industrial Services - Portable Cabins & Mobile Accommodations',
-  description: 'Premium portable cabins, mobile offices, and mobile homes. Custom fabrication and rapid deployment of modular solutions.',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'WISLUCK Global Industrial Services | Portacabins, Mobile Homes & Fabrication',
+    template: '%s',
+  },
+  description:
+    'Welding & fabrication, portacabins, mobile homes, offices and modular units, container offices, mobile toilets, and nationwide sandwich panel supply. Based in Port Harcourt, Rivers State, Nigeria.',
+  keywords: [
+    'portacabin Nigeria',
+    'mobile home Nigeria',
+    'mobile home Port Harcourt',
+    'welding and fabrication Port Harcourt',
+    'sandwich panel supply Nigeria',
+    'modular units Port Harcourt',
+    'container office Nigeria',
+    'mobile toilet fabrication',
+  ],
   generator: 'v0.app',
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_NG',
+    siteName: 'WISLUCK Global Industrial Services',
+    title: 'WISLUCK Global Industrial Services | Portacabins, Mobile Homes & Fabrication',
+    description:
+      'Welding & fabrication, portacabin and modular unit manufacturing, container offices, mobile toilets, and nationwide sandwich panel supply.',
+    url: '/',
+    images: ['/images/image_22.jpg'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'WISLUCK Global Industrial Services',
+    description:
+      'Welding & fabrication, portacabin and modular unit manufacturing, container offices, mobile toilets, and nationwide sandwich panel supply.',
+    images: ['/images/image_22.jpg'],
+  },
   icons: {
     icon: [
       {
@@ -64,7 +92,7 @@ const localBusinessSchema = {
   },
   areaServed: "NG",
   description:
-    "Welding and fabrication, portacabin and modular unit manufacturing, container offices, mobile toilets, and nationwide sandwich panel supply.",
+    "Welding and fabrication, portacabins, mobile homes, offices and modular units, container offices, mobile toilets, and nationwide sandwich panel supply.",
 }
 
 export default function RootLayout({

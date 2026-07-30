@@ -45,7 +45,7 @@ export function ScrollReveal({
 
       if (!els || els.length === 0) return;
 
-      gsap.from(els, {
+      const tween = gsap.from(els, {
         opacity: 0,
         y,
         duration: 0.5,
@@ -57,6 +57,36 @@ export function ScrollReveal({
           toggleActions: "play none none reverse",
         },
       });
+
+      // Failsafe: this animation starts elements at opacity 0 and relies on
+      // ScrollTrigger to reveal them. If the trigger never fires for any
+      // reason (a miscalculated position, a layout race, anything) real
+      // content — contact info, form fields — would be stuck invisible
+      // with no way for a visitor to know it's there. Watch for the
+      // container actually entering the viewport and, if it's still
+      // hidden shortly after, force full visibility. Gated on actual
+      // visibility (not a blind timer) so this never fires early and
+      // wrongly reveals content that's legitimately still below the fold.
+      let failsafeTimer: ReturnType<typeof setTimeout> | null = null;
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0]?.isIntersecting) {
+            failsafeTimer = setTimeout(() => {
+              if (gsap.getProperty(els[0], "opacity") === 0) {
+                gsap.set(els, { opacity: 1, y: 0 });
+              }
+            }, 800);
+          }
+        },
+        { threshold: 0 }
+      );
+      if (containerRef.current) observer.observe(containerRef.current);
+
+      return () => {
+        if (failsafeTimer) clearTimeout(failsafeTimer);
+        observer.disconnect();
+        tween.scrollTrigger?.kill();
+      };
     },
     { scope: containerRef }
   );
